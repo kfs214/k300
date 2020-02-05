@@ -11,13 +11,13 @@
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                        <div class="form-group row">  <!--uname-->
+                            <label for="uname" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="uname" type="text" class="form-control @error('uname') is-invalid @enderror" name="uname" value="{{ old('uname') }}" required autocomplete="name" autofocus>
 
-                                @error('name')
+                                @error('uname')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -26,6 +26,49 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="birthday" class="col-md-4 col-form-label text-md-right">生年月日</label>
+
+                            <div class="col-md-6">
+                                <input id="birthday" type="date" class="form-control @error('birthday') is-invalid @enderror" name="birthday" value="{{ old('birthday') }}" required autocomplete="bday" placeholder="1980-04-02">
+
+                                @error('birthday')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="comment" class="col-md-4 col-form-label text-md-right">コメント</label>
+
+                            <div class="col-md-6">
+                                <textarea id="comment" class="form-control @error('comment') is-invalid @enderror" name="comment" value="{{ old('comment') }}" placeholder="ふんどし王子です。余市第1リフトで仕事してます。プログラマーやったり自衛官やったり家事代行やったりしてきました。南樽市場安くて幸せ。"></textarea>
+
+                                @error('comment')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">  <!--profile_shown-->
+                            <label for="profile_shown" class="col-md-4 col-form-label text-md-right">公開範囲設定</label>
+
+                            <div class="col-md-6">
+                                <input type="checkbox" id="name_hidden" name="name_hidden" value="true"><lavel for="name_hidden">匿名を利用する</lavel><br>
+                                <select name="type_shown">
+                                  <option value="7">60タイプ分類を使用</option>
+                                  <option value="6">60タイプ分類を非公開</option>
+                                  <option value="4">12タイプ分類を非公開</option>
+                                  <option value="0">3タイプ分類を非公開</option>
+                                </select>
+                                <p>※グループに参加しない場合は、登録した情報や診断結果は一切公開されません。</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">  <!--email-->
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
