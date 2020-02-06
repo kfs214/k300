@@ -9,9 +9,10 @@
   </p>
   <p>{!!$services->getLink($animal->aname)!!}です。</a></p>
   <h6>詳細をGoogleで検索する</h6>
-    <p>{!!$services->getLink($animal->aname)!!}<br>
-      {!!$services->getLink($animal->t12aname)!!}<br>
-      {!!$services->getLink($animal->t3aname)!!}<br>
-      {!!$services->getLink($animal->rhythm)!!}<br>
+    <p>60タイプ分類：{!!$services->getLink($animal->aname)!!}<br>
+      12タイプ分類：{!!$services->getLink($animal->t12aname)!!}<br>
+      3タイプ分類：{!!$services->getLink($animal->t3aname)!!}<br>
+      リズム：{!!$services->getLink($animal->rhythm)!!}<br>
+      ホワイトエンジェル：{!!$services->getLink($animal->wangel)!!}<br>
     </p>
 @endsection
