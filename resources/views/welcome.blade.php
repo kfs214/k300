@@ -20,6 +20,11 @@
                 margin: 0;
             }
 
+            img{
+              width: 100%;
+              margin: auto;
+            }
+
             .full-height {
                 height: 100vh;
             }
@@ -99,5 +104,6 @@
                   <p>グループ内のユーザーにメッセージを送る機能。特定の診断結果のユーザーにイベント招待を送る機能。</p>
             </div>
         </div>
+        <img src="/img/R202.002.png" alt="イメージ図">
     </body>
 </html>
