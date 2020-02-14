@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@yield('title', 'ログイン')
 
 @section('content')
 <div class="container">

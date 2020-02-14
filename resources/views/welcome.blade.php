@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>動物占い—K300</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -48,6 +48,10 @@
                 font-size: 84px;
             }
 
+            .title p{
+                font-size: 42px;
+            }
+
             .links > a {
                 color: #636b6f;
                 padding: 0 25px;
@@ -81,19 +85,18 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    K300〜ver.1 alpha〜
+                    <p>動物占い</p>
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+                <h4>追加予定の機能</h4>
+                  <p>※予定です</p>
+                <h5>ユーザー追加機能</h5>
+                  <p>チームメンバーや友人の生年月日を一括登録し、並び替えや検索ができる機能。</p>
+                <h5>グループ作成機能</h5>
+                  <p>登録したユーザーがグループを作り、グループ内で並び替えや検索ができる機能。</p>
+                <h5>チャット・イベント作成機能</h5>
+                  <p>グループ内のユーザーにメッセージを送る機能。特定の診断結果のユーザーにイベント招待を送る機能。</p>
             </div>
         </div>
     </body>

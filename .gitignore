@@ -1,4 +1,6 @@
 /database/migrations/2020_02_06_114040_init_animals_table.php
+/config/database.php
+lab.log
 /node_modules
 /public/hot
 /public/storage
