@@ -1,5 +1,5 @@
-@extends('layouts.app')
-@yield('title', '新規登録')
+@extends('layouts.common')
+@section('title', '新規登録')
 
 @section('content')
 <div class="container">

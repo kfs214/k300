@@ -1,5 +1,5 @@
-@extends('layouts.app')
-@yield('title', 'ログイン')
+@extends('layouts.common')
+@section('title', 'ログイン')
 
 @section('content')
 <div class="container">
