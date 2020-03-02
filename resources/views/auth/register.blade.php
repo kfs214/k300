@@ -30,13 +30,19 @@
                             <label for="birthday" class="col-md-4 col-form-label text-md-right">生年月日</label>
 
                             <div class="col-md-6">
-                                <input id="birthday" type="date" class="form-control @error('birthday') is-invalid @enderror" name="birthday" value="{{ old('birthday') }}" required autocomplete="bday" placeholder="1980-04-02">
+                                <input id="bday-year" type="number" class="form-control @error('bday-year') is-invalid @enderror" name="bday-year" value="{{ old('bday-year') }}" required autocomplete="bday" placeholder="1980">年
+
+                                <input id="bday-month" type="number" class="form-control @error('bday-month') is-invalid @enderror" name="bday-month" value="{{ old('bday-month') }}" required autocomplete="bday" placeholder="2">月
+
+                                <input id="bday-day" type="number" class="form-control @error('bday-day') is-invalid @enderror" name="bday-day" value="{{ old('bday-day') }}" required autocomplete="bday" placeholder="14">日
 
                                 @error('birthday')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+
+
                             </div>
                         </div>
 
@@ -44,7 +50,7 @@
                             <label for="comment" class="col-md-4 col-form-label text-md-right">コメント</label>
 
                             <div class="col-md-6">
-                                <textarea id="comment" class="form-control @error('comment') is-invalid @enderror" name="comment" value="{{ old('comment') }}" placeholder="ふんどし王子です。余市第1リフトで仕事してます。プログラマーやったり自衛官やったり家事代行やったりしてきました。南樽市場安くて幸せ。"></textarea>
+                                <textarea id="comment" class="form-control @error('comment') is-invalid @enderror" name="comment" placeholder="ふんどし王子です。余市第1リフトで仕事してます。プログラマーやったり自衛官やったり家事代行やったりしてきました。南樽市場安くて幸せ。">{{ old('comment') }}</textarea>
 
                                 @error('comment')
                                     <span class="invalid-feedback" role="alert">
@@ -60,7 +66,7 @@
                             <div class="col-md-6">
                                 <input type="checkbox" id="name_hidden" name="name_hidden" value="true"><lavel for="name_hidden">匿名を利用する</lavel><br>
                                 <select name="type_shown">
-                                  <option value="7">60タイプ分類を使用</option>
+                                  <option value="7">通常</option>
                                   <option value="6">60タイプ分類を非公開</option>
                                   <option value="4">12タイプ分類を非公開</option>
                                   <option value="0">3タイプ分類を非公開</option>
