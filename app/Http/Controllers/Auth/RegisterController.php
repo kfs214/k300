@@ -50,6 +50,15 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+      if ($data['bday-month'] < 10) {
+          $data['bday-month'] = 0 . $data['bday-month'];
+      }
+      if ($data['bday-day'] < 10) {
+          $data['bday-day'] = 0 . $data['bday-day'];
+      }
+
+      $data['birthday'] = $data['bday-year'] . '-' . $data['bday-month'] . '-' . $data['bday-day'];
+      
         return Validator::make($data, [
             'uname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -66,6 +75,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
+      if ($data['bday-month'] < 10) {
+          $data['bday-month'] = 0 . $data['bday-month'];
+      }
+      if ($data['bday-day'] < 10) {
+          $data['bday-day'] = 0 . $data['bday-day'];
+      }
+
+      $data['birthday'] = $data['bday-year'] . '-' . $data['bday-month'] . '-' . $data['bday-day'];
+
         $ref_date = Carbon::createFromDate('1921-12-26');
         $birthday = Carbon::createFromDate($data['birthday']);
         $interval = $ref_date->diffInDays($birthday);
