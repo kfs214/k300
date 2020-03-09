@@ -58,7 +58,7 @@ class RegisterController extends Controller
       }
 
       $data['birthday'] = $data['bday-year'] . '-' . $data['bday-month'] . '-' . $data['bday-day'];
-      
+
         return Validator::make($data, [
             'uname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -89,6 +89,9 @@ class RegisterController extends Controller
         $birthday = Carbon::createFromDate($data['birthday']);
         $interval = $ref_date->diffInDays($birthday);
         $acode = $interval % 60;
+        if($acode == 0){
+          $acode = 60;
+        }
 
         return User::create([
           'uname' => $data['uname'],
