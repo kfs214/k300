@@ -25,9 +25,7 @@ class DateRequest extends FormRequest
             }
 
             $birthday = $this->bday_year . '-' . $this->bday_month . '-' . $this->bday_day;
-            $this->merge([
-                'birthday' => $birthday
-            ]);
+            $this->merge(compact('birthday'));
     }
 
     /**

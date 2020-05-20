@@ -18,3 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::as('simple.')->group(function(){
+  Route::get('/simple', 'SimpleController@showSimpleForm')->name('form');
+  Route::post('/simple', 'SimpleController@result')->name('result');
+});

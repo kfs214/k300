@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DateRequest;
 use App\Providers\RouteServiceProvider;
+use App\Services\AnimalService;
 use App\User;
-use Carbon\Carbon;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -81,13 +81,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $ref_date = Carbon::createFromDate('1921-12-26');
-        $birthday = Carbon::createFromDate($data['birthday']);
-        $interval = $ref_date->diffInDays($birthday);
-        $acode = $interval % 60;
-        if($acode == 0){
-          $acode = 60;
-        }
+        $acode = AnimalService::acode($data['birthday']);
 
         return User::create([
           'uname' => $data['uname'],
