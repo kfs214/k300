@@ -58,7 +58,7 @@ class InitAnimalsTable extends Migration
         ['t12aname' => 'チータ', 't4code' => '3', 'aname' => '足腰の強いチータ', 'rhythm' => '草花', 't3aname' => '太陽', 'wangel' => '57', 'bdebil' => '27'],
         ['t12aname' => '虎', 't4code' => '2', 'aname' => '動きまわる虎', 'rhythm' => '太陽', 't3aname' => '地球', 'wangel' => '8', 'bdebil' => '38'],
         ['t12aname' => '黒ひょう', 't4code' => '3', 'aname' => '情熱的な黒ひょう', 'rhythm' => '灯火', 't3aname' => '満月', 'wangel' => '19', 'bdebil' => '49'],
-        ['t12aname' => '子守熊', 't4code' => '4', 'aname' => 'サービス精神旺盛な子守熊', 'rhythm' => '山岳', 't3aname' => '地球', 'wangel' => '30', 'bdebil' => '0'],
+        ['t12aname' => '子守熊', 't4code' => '4', 'aname' => 'サービス精神旺盛な子守熊', 'rhythm' => '山岳', 't3aname' => '地球', 'wangel' => '30', 'bdebil' => '60'],
         ['t12aname' => '猿', 't4code' => '3', 'aname' => '守りの猿', 'rhythm' => '大地', 't3aname' => '地球', 'wangel' => '41', 'bdebil' => '11'],
         ['t12aname' => 'たぬき', 't4code' => '2', 'aname' => '人間味あふれるたぬき', 'rhythm' => '鉱脈', 't3aname' => '新月', 'wangel' => '52', 'bdebil' => '22'],
         ['t12aname' => 'チータ', 't4code' => '3', 'aname' => '品格のあるチータ', 'rhythm' => '宝石', 't3aname' => '太陽', 'wangel' => '3', 'bdebil' => '33'],

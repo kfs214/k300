@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\DateRequest;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Carbon\Carbon;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -58,6 +60,19 @@ class RegisterController extends Controller
         ]);
     }
 
+    public function register(DateRequest $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
+
+        return $this->registered($request, $user)
+                        ?: redirect($this->redirectPath());
+    }
+
+
     /**
      * Create a new user instance after a valid registration.
      *
@@ -70,6 +85,9 @@ class RegisterController extends Controller
         $birthday = Carbon::createFromDate($data['birthday']);
         $interval = $ref_date->diffInDays($birthday);
         $acode = $interval % 60;
+        if($acode == 0){
+          $acode = 60;
+        }
 
         return User::create([
           'uname' => $data['uname'],
