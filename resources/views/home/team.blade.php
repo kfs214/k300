@@ -5,7 +5,7 @@
   @if( session('status') !== null )
     {{ session('status') }}<br><br>
   @endif
-  @isset($team_members)
+  @isset($team_members['0'])
     <a href="#form">新たにチームメンバーを追加する</a><br>
     <table>
       <tr>
