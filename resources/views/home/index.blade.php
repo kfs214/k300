@@ -6,10 +6,14 @@
   <h6>診断結果</h6>
     <p>{{$user->birthday ?? $birthday}}
       生まれの
-      @isset($user)
+      @isset( $user )
         <br>{{$user->uname}}さんは
       @else
-        あなたは
+        @auth
+          方は
+        @else
+          あなたは
+        @endauth
       @endisset
     </p>
   <p>{!!$services->getLink($animal->aname)!!}です。</a></p>
@@ -20,9 +24,11 @@
       リズム：{!!$services->getLink($animal->rhythm)!!}<br>
       ホワイトエンジェル：{!!$services->getLink($animal->wangel)!!}<br>
     </p>
-  @empty($user)
+  @auth
+    <a href="{{ route('team.index') }}">チームメンバーの動物を一覧表示する</a><br>
+  @else
     <a href="/">会員登録でできること・これからできるようになること</a><br>
     <a href="{{ route('register') }}">会員登録する</a><br>
-  @endempty
+  @endauth
   <a href="{{ route('simple.form') }}">他の人の生年月日で簡易診断を行う</a>
 @endsection

@@ -22,3 +22,7 @@ Route::as('simple.')->group(function(){
   Route::get('/simple', 'SimpleController@showSimpleForm')->name('form');
   Route::post('/simple', 'SimpleController@result')->name('result');
 });
+Route::middleware('auth')->as('team.')->group(function(){
+  Route::get('/team', 'TeamController@index')->name('index');
+  Route::post('/team', 'TeamController@store');
+});

@@ -24,10 +24,11 @@ class AnimalServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer(
-          'home.index', 'App\Http\Composers\AnimalComposer'
-        );
-    }
+/*        View::composers([
+          \App\Http\Composers\AnimalComposer::class => 'home.index',
+//          \App\Http\Composers\AnimalComposer::class => 'home.team',
+        ]);
+*/    }
 
 /*
     public function getLink($query){
