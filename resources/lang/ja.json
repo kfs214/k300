@@ -11,6 +11,10 @@
 "If you did not receive the email,": "受信できない場合は",
 "click here to request another.": "こちらから再送信できます",
 
+"Please click the button below to verify your email address.": "メールアドレス認証のために以下の認証用ボタンをクリックしてください",
+"If you did not create an account, no further action is required.": "このメールに覚えがない場合、何もする必要はありません",
+"Verify Email Address": "メールアドレスを認証",
+
 
 "Name": "お名前",
 "E-Mail Address": "メールアドレス",
