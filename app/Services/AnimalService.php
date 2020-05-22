@@ -14,11 +14,18 @@ class AnimalService{
     }
 
     return $acode;
-
   }
+
 
   public function getLink($query){
     return '<a href="https://www.google.co.jp/search?q=動物占い+' . $query . '" target="_blank">' . $query . '</a>';
+  }
+
+
+  public function sortLinkGen($shown, $sort){
+    return $shown . '
+      <a href="' . url()->current() . '?sort=' . $sort . '&direction=asc">▲</a>
+      <a href="' . url()->current() . '?sort=' . $sort . '&direction=desc">▼</a>';
   }
 }
 

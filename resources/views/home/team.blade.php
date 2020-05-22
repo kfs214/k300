@@ -7,14 +7,15 @@
   @endif
   @isset($team_members['0'])
     <a href="#form">新たにチームメンバーを追加する</a><br>
+    追加した順に表示する<a href="{{ url()->current() }}?direction=asc">▲</a><a href="{{ url()->current() }}">▼</a><br>
     <table>
       <tr>
-        <th>お名前</th>
-        <th>生年月日</th>
-        <th>60タイプ</th>
-        <th>リズム</th>
-        <th>12タイプ</th>
-        <th>3タイプ</th>
+        <th>{!! $services->sortLinkGen('お名前', 'name') !!}</th>
+        <th>{!! $services->sortLinkGen('生年月日', 'birthday') !!}</th>
+        <th>{!! $services->sortLinkGen('60タイプ', 'acode') !!}</th>
+        <th>{!! $services->sortLinkGen('12タイプ', 't12aname') !!}</th>
+        <th>{!! $services->sortLinkGen('3タイプ', 't3aname') !!}</th>
+        <th>{!! $services->sortLinkGen('リズム', 'rhythm') !!}</th>
         <th>ホワイトエンジェル</th>
         <th>ブラックデビル</th>
       </tr>
@@ -23,21 +24,24 @@
           <td>{{ $team_member->name }}</td>
           <td>{{ $team_member->birthday }}</td>
           <td>{!! $services->getLink($team_member->animal->aname) !!}</td>
-          <td>{!! $services->getLink($team_member->animal->rhythm) !!}</td>
           <td>{!! $services->getLink($team_member->animal->t12aname) !!}</td>
           <td>{!! $services->getLink($team_member->animal->t3aname) !!}</td>
+          <td>{!! $services->getLink($team_member->animal->rhythm) !!}</td>
           <td>{!! $services->getLink($team_member->animal->wangel) !!}</td>
           <td>{!! $services->getLink($team_member->animal->bdebil) !!}</td>
         </tr>
       @endforeach
     </table>
-    {{ $team_members->links() }}
+    {{ $team_members->appends(request()->query())->links() }}
   @else
     まだメンバーがいないようです。
   @endisset
 
 
 <h3>新たにチームメンバーを追加する</h3>
+  @if( session('status') !== null )
+    {{ session('status') }}<br><br>
+  @endif
   <form method="POST" id="form">
       @csrf
       <div class="form-group row">  <!--name-->

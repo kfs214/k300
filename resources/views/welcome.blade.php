@@ -91,7 +91,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    K300〜ver.1 alpha〜
+                    K300〜ver.2 alpha〜
                     <p>動物占い</p>
                 </div>
 
