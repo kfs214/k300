@@ -62,5 +62,6 @@
   <script src="http://vjs.zencdn.net/6.6.3/video.js"></script>
   <script src="dist/js/flat-ui.min.js"></script>
   <script src="docs/assets/js/application.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>
