@@ -20,9 +20,11 @@ Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
 Route::as('simple.')->group(function(){
   Route::get('/simple', 'SimpleController@showSimpleForm')->name('form');
-  Route::post('/simple', 'SimpleController@result')->name('result');
+  Route::post('/simple', 'SimpleController@result');
 });
+
 Route::middleware('auth')->as('team.')->group(function(){
   Route::get('/team', 'TeamController@index')->name('index');
-  Route::post('/team', 'TeamController@store');
+  Route::post('/team', 'TeamController@index');
+  Route::post('/team/add', 'TeamController@store')->name('add');
 });
