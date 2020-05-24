@@ -1,9 +1,0 @@
-if ($data['bday-month'] < 10) {
-    $data['bday-month'] = 0 . $data['bday-month'];
-}
-if ($data['bday-day'] < 10) {
-    $data['bday-day'] = 0 . $data['bday-day'];
-}
-
-$data['birthday'] = $data['bday-year'] . '-' . $data['bday-month'] . '-' . $data['bday-day'];
-return $data;

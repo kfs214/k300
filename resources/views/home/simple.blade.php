@@ -2,7 +2,7 @@
 @section('title', 'simple')
 
 @section('content')
-  <form method="POST" action="{{ route('simple.result') }}">
+  <form method="POST">
       @csrf
       <div class="form-group row">
           <label for="birthday" class="col-md-4 col-form-label text-md-right">生年月日</label>

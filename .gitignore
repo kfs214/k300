@@ -6,6 +6,7 @@ lab.log
 /public/storage
 /storage/*.key
 /vendor
+.DS_Store
 .env
 .env.backup
 .phpunit.result.cache
