@@ -1,7 +1,7 @@
 <html>
 <head>
   <title>@yield('title')|動物占い—K300</title>
-  <!-- <link rel="stylesheet" type="text/css" href="/css/common.css"> -->
+  <link rel="stylesheet" type="text/css" href="/css/app.css">
   <link href="dist/css/vendor/bootstrap.min.css" rel="stylesheet">
   <link href="dist/css/flat-ui.min.css" rel="stylesheet">
 
