@@ -9,13 +9,13 @@
     <a href="#form">新たにチームメンバーを追加する</a><br>
     <div>
       <h3>以下の条件で絞り込み検索する</h3>
-      <form method="POST">
+      <form method="POST" action="{{ url()->current() }}">
           @csrf
           <select name="t12aname">
             <option value="">12タイプ</option>
             @foreach( $animal_groups['t12anames'] as $t4aname => $t12anames )
               <optgroup label="---{{ $t4aname }}---">
-              <option value="{{ $loop->iteration }}" {{ $t4aname == $selected_animals['t12aname'] ? 'selected' : ''}}>{{ $t4aname }}（以下の3種類すべて）</option>
+              <option value="{{ $loop->iteration }}" {{ $loop->iteration == $selected_animals['t12aname'] ? 'selected' : ''}}>{{ $t4aname }}（以下の3種類すべて）</option>
                 @foreach( $t12anames as $t12aname )
                   <option value="{{ $t12aname }}" {{ $t12aname == $selected_animals['t12aname'] ? 'selected' : ''}}>{{ $t12aname }}</option>
                 @endforeach
@@ -27,7 +27,7 @@
             @endforeach
           </select>
 
-          <select name="rythm">
+          <select name="rhythm">
             <option value="">リズム</option>
             @foreach( $animal_groups['rhythms'] as $rhythm )
               <option value="{{ $rhythm }}" {{ $rhythm == $selected_animals['rhythm'] ? 'selected' : ''}}>{{ $rhythm }}</option>
@@ -54,9 +54,11 @@
 
           <button type="submit" name="search_by" value="acode">
               60タイプで絞り込む
+          </button><br>
+          <button type="submit" name="search_by" value="none">
+            絞り込みを解除する
           </button>
       </form>
-      <a href="{{ route('team.index') }}">絞り込みを解除する</a>
     </div>
       追加した順に表示する<a href="{{ url()->current() }}?direction=asc">▲</a><a href="{{ url()->current() }}">▼</a><br>
       <table>
