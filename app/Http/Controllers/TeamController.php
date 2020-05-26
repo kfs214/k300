@@ -117,6 +117,7 @@ class TeamController extends Controller
       $data += compact('acode', 'user_id');
 
       $team_member->fill($data)->save();
+      session()->forget('filters');
       return redirect(route( 'team.index' ))->with('status', '追加が完了しました');
     }
 }

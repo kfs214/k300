@@ -20,6 +20,7 @@ class SimpleController extends Controller
       $acode = AnimalService::acode($request->birthday);
       $animal = Animal::find($acode);
       $birthday = $request->birthday;
-      return view('home.index', compact('animal', 'birthday'));
+      $title = '簡易診断';
+      return view('home.index', compact('animal', 'birthday', 'title'));
     }
 }

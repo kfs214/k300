@@ -1,6 +1,6 @@
 @extends('layouts.common')
 @inject('services', 'App\Services\AnimalService')
-@section('title', 'home')
+@section('title', $title)
 
 @section('content')
 <div class="row">

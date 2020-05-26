@@ -1,7 +1,7 @@
 @extends('layouts.common')
+@section('title', 'チームのメンバー一覧')
 
 @section('content')
-
 @include('components.members_list', ['mode' => 'team'])
 
 <h3>新たにチームメンバーを追加する</h3>

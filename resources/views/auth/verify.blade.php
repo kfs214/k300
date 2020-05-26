@@ -1,4 +1,5 @@
 @extends('layouts.common')
+@section('title', 'メール認証')
 
 @section('content')
 <div class="container">

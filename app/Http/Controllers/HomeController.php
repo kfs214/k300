@@ -27,6 +27,6 @@ class HomeController extends Controller
     {
         $user = Auth::user();
         $animal = Animal::find($user->acode);
-        return view('home.index', ['user' => $user, 'animal' => $animal]);
+        return view('home.index', ['user' => $user, 'animal' => $animal, 'title' => 'マイページ']);
     }
 }
