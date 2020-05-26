@@ -1,0 +1,17 @@
+
+// 診断結果ページ
+.result {
+    &.wrap {
+        width: 500px;
+        margin:0 auto;
+        @include mq {
+            width: 100%;
+        }
+    }
+}
+//新規登録ページ
+
+.row-5 {
+    height: calc( 1.3em * 5 );
+    line-height: 1.3;
+}
