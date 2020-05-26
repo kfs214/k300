@@ -2,8 +2,8 @@
 <head>
   <title>@yield('title')|動物占い—K300</title>
   <!-- <link rel="stylesheet" type="text/css" href="/css/common.css"> -->
-  <link href="{{ asset('/dist/css/vendor/bootstrap.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('/dist/css/flat-ui.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('/links/dist/css/vendor/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('/links/dist/css/flat-ui.min.css') }}" rel="stylesheet">
 
 </head>
 
@@ -39,8 +39,8 @@
   <!-- Bootstrap 4 requires Popper.js -->
   <script src="https://unpkg.com/popper.js@1.14.1/dist/umd/popper.min.js" crossorigin="anonymous"></script>
   <script src="http://vjs.zencdn.net/6.6.3/video.js"></script>
-  <script src="dist/js/flat-ui.min.js"></script>
-  <script src="docs/assets/js/application.js"></script>
-  <script src="js/script.js"></script>
+  <script src="{{ asset('/links/dist/js/flat-ui.min.js') }}"></script>
+  <script src="{{ asset('/links/docs/assets/js/application.js') }}"></script>
+  <script src="{{ asset('/links/js/script.js') }}"></script>
 </body>
 </html>
