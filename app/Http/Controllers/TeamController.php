@@ -23,12 +23,11 @@ class TeamController extends Controller
 
         $filters[] = ['user_id', auth()->user()->id];
 /*        if( $sort == 't12acode' ){
-            $team_members = TeamMember::where('user_id', auth()->user()->id)->orderBy($direction)->paginate(20);
+            $members = TeamMember::where('user_id', auth()->user()->id)->orderBy($direction)->paginate(20);
         }敗北の記録*/
 
-
         //取得系
-        $team_members_count = TeamMember::where( $filters )->count();
+        $members_count = TeamMember::where( $filters )->count();
 
         $t3anames = Animal::distinct()->pluck('t3aname');
 
@@ -90,16 +89,16 @@ class TeamController extends Controller
               $selected_animals['t12aname'] = $request->t12aname;
             }
 
-          }else{
+          }elseif( session('filters') ){
               $filters = session('filters');
               $selected_animals = session('selected_animals');
           }
 
 
         //いよいよ系
-        $team_members = TeamMember::where( $filters )->join('animals', 'animals.id', '=', 'team_members.acode')/*->join('animal_groups', 'animal_groups.t12aname', '=', 'animals.t12aname')*/->orderBy($sort, $direction)->paginate(20);
+        $members = TeamMember::where( $filters )->join('animals', 'animals.id', '=', 'team_members.acode')/*->join('animal_groups', 'animal_groups.t12aname', '=', 'animals.t12aname')*/->orderBy($sort, $direction)->paginate(20);
 
-        $params = ['selected_animals', 'grouped_animals', 'animal_groups', 'team_members', 'team_members_count'];
+        $params = ['selected_animals', 'grouped_animals', 'animal_groups', 'members', 'members_count'];
 
         session(compact('filters', 'selected_animals'));
 

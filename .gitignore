@@ -1,9 +1,9 @@
 /database/migrations/2020_02_06_114040_init_animals_table.php
-lab.log
 /node_modules
 /public/hot
 /public/storage
 /storage/*.key
+/toBeSent/*
 /vendor
 .DS_Store
 .env
@@ -11,6 +11,7 @@ lab.log
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
+lab.log
 npm-debug.log
 yarn-error.log
 later.txt

@@ -2,8 +2,8 @@
 <head>
   <title>@yield('title')|動物占い—K300</title>
   <!-- <link rel="stylesheet" type="text/css" href="/css/common.css"> -->
-  <link href="dist/css/vendor/bootstrap.min.css" rel="stylesheet">
-  <link href="dist/css/flat-ui.min.css" rel="stylesheet">
+  <link href="/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+  <link href="/dist/css/flat-ui.min.css" rel="stylesheet">
 
 </head>
 
@@ -13,39 +13,18 @@
     <div class="row demo-row">
       <div class="col">
         <nav class="navbar navbar-inverse navbar-embossed navbar-expand-lg" role="navigation">
-            <a class="navbar-brand" href="#">牛島くん動物占い</a>
+            <a class="navbar-brand" href="{{ url('/') }}">{{ config('app.name') }}</a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-01"></button>
             <div class="collapse navbar-collapse" id="navbar-collapse-01">
             <ul class="nav navbar-nav mr-auto">
               @auth
-                <li><a href="{{ url('/home') }}">HOME<span class="navbar-unread">1</span></a></li>
+                <li><a href="{{ route('home') }}">HOME</a></li>
               @else
-                <li><a href="{{ route('login') }}">LOGIN<span class="navbar-unread">1</span></a></li>
-                <li><a href="{{ route('register') }}">新規登録<span class="navbar-unread">2</span></a></li>
+                <li><a href="{{ route('login') }}">LOGIN</a></li>
+                <li><a href="{{ route('register') }}">新規登録</a></li>
               @endauth
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">動物の種類</a>
-                    <span class="dropdown-arrow"></span>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">ぞう</a></li>
-                        <li><a href="#">猿</a></li>
-                        <li><a href="#">チーター</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">まとめはこちら</a></li>
-                    </ul>
-                </li>
                 <li><a href="{{ route('simple.form') }}">簡易診断</a></li>
             </ul>
-            <form class="navbar-form form-inline my-2 my-lg-0" action="#" role="search">
-                <div class="form-group">
-                    <div class="input-group">
-                        <input class="form-control" id="navbarInput-01" type="search" placeholder="Search">
-                        <span class="input-group-btn">
-                        <button type="submit" class="btn"><span class="fui-search"></span></button>
-                        </span>
-                    </div>
-                </div>
-            </form>
         </div><!-- /.navbar-collapse -->
         </nav><!-- /navbar -->
       </div>
