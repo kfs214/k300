@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->date('birthday');
             $table->integer('acode'); //animal_code
             $table->boolean('name_shown');
-            $table->integer('type_shown'); //111, 110, 100, 000, 3/12/60 （%2 == 1なら60公開）
+            $table->integer('type_shown'); //111, 110, 100, 000, 60/12/3 （%2 == 1なら60公開）
             $table->string('comment')->nullable();  //up to 120 caracters in Japanese
             $table->rememberToken();
             $table->timestamps();

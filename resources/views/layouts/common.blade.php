@@ -18,7 +18,8 @@
             <div class="collapse navbar-collapse" id="navbar-collapse-01">
             <ul class="nav navbar-nav mr-auto">
               @auth
-                <li><a href="{{ route('home') }}">HOME</a></li>
+                <li><a href="{{ route('home.mypage') }}">HOME</a></li>
+                <li><a href="{{ route('home.settings') }}">設定</a></li>
               @else
                 <li><a href="{{ route('login') }}">LOGIN</a></li>
                 <li><a href="{{ route('register') }}">新規登録</a></li>

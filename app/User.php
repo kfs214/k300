@@ -17,7 +17,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
      * @var array
      */
     protected $fillable = [
-        'uname', 'birthday', 'acode', 'comment', 'name_shown', 'type_shown', 'email', 'password'
+        'uname', 'birthday', 'acode', 'comment', 'name_shown', 'type_shown', 'email', 'password', 'notify_posts', 'notify_users', 'notify_messages',
     ];
 
     /**
@@ -37,4 +37,9 @@ class User extends Authenticatable implements MustVerifyEmailContract
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function boards(){
+        return $this->belongsToMany('App\Board', 'user_board')->withPivot('notify');
+    }
 }
