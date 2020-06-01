@@ -91,16 +91,23 @@
         <tr>
           @if( $mode == 'team' )
             <td>{{ $member->name }}</td>
+            <td>{{ $member->birthday }}</td>
+            <td>{!! $services->getLink($member->animal->aname) !!}</td>
+            <td>{!! $services->getLink($member->animal->t12aname) !!}</td>
+            <td>{!! $services->getLink($member->animal->t3aname) !!}</td>
+            <td>{!! $services->getLink($member->animal->rhythm) !!}</td>
+            <td>{!! $services->getLink($member->animal->wangel) !!}</td>
+            <td>{!! $services->getLink($member->animal->bdebil) !!}</td>
           @else
             <td>{{ $member->shown_uname }}</td>
+            <td>{{ $member->birthday }}</td>
+            <td>{!! $services->getLink($member->aname) !!}</td>
+            <td>{!! $services->getLink($member->t12aname) !!}</td>
+            <td>{!! $services->getLink($member->t3aname) !!}</td>
+            <td>{!! $services->getLink($member->rhythm) !!}</td>
+            <td>{!! $services->getLink($member->wangel) !!}</td>
+            <td>{!! $services->getLink($member->bdebil) !!}</td>
           @endif
-          <td>{{ $member->birthday }}</td>
-          <td>{!! $services->getLink($member->animal->aname) !!}</td>
-          <td>{!! $services->getLink($member->animal->t12aname) !!}</td>
-          <td>{!! $services->getLink($member->animal->t3aname) !!}</td>
-          <td>{!! $services->getLink($member->animal->rhythm) !!}</td>
-          <td>{!! $services->getLink($member->animal->wangel) !!}</td>
-          <td>{!! $services->getLink($member->animal->bdebil) !!}</td>
         </tr>
       @endforeach
     </table>

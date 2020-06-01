@@ -62,11 +62,13 @@ class BoardsController extends Controller
             $mode = 'guest';
         }
 
-        $members = $board->users()->latest()->take(5)->with('animal')->get();
+        $params = ['aname', 't12aname', 't3aname'];
+
+        $members = $board->users()->latest()->take(5)->get();
 
         $members_count = $members->count();
 
-        $posts = $board->posts()->with('user')->with('animal')->paginate(20);
+        $posts = $board->posts()->with('user')->paginate(20);
 
         return view( 'boards.board', compact('members', 'members_count', 'posts', 'board', 'mode', 'join_url') );
     }

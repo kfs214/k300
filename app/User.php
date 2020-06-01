@@ -51,6 +51,60 @@ class User extends Authenticatable implements MustVerifyEmailContract
     }
 
 
+    public function getAnameAttribute($value){
+      if($this->type_shown % 2){
+          return $this->animal()->first()->aname;
+      }else{
+          return Config::get('view.hidden');
+      }
+    }
+
+
+    public function getRhythmAttribute($value){
+      if($this->type_shown % 2){
+          return $this->animal()->first()->rhythm;
+      }else{
+          return Config::get('view.hidden');
+      }
+    }
+
+
+    public function getWangelAttribute($value){
+      if($this->type_shown % 2){
+          return $this->animal()->first()->wangel;
+      }else{
+          return Config::get('view.hidden');
+      }
+    }
+
+
+    public function getBdebilAttribute($value){
+      if($this->type_shown % 2){
+          return $this->animal()->first()->bdebil;
+      }else{
+          return Config::get('view.hidden');
+      }
+    }
+
+
+    public function getT12AnameAttribute($value){
+      if($this->type_shown % 4){
+          return $this->animal()->first()->t12aname;
+      }else{
+          return Config::get('view.hidden');
+      }
+    }
+
+
+    public function getT3AnameAttribute($value){
+      if($this->type_shown % 8){
+          return $this->animal()->first()->t3aname;
+      }else{
+          return Config::get('view.hidden');
+      }
+    }
+
+
     public function getShownUnameAttribute($value){
       if($this->name_shown){
           return $this->uname;
