@@ -7,6 +7,7 @@ use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Animal;
+use Config;
 
 class User extends Authenticatable implements MustVerifyEmailContract
 {
@@ -40,11 +41,21 @@ class User extends Authenticatable implements MustVerifyEmailContract
     ];
 
 
+    public function animal(){
+        return $this->hasOne('App\Animal', 'id', 'acode');
+    }
+
+
     public function boards(){
         return $this->belongsToMany('App\Board', 'user_board')->withPivot('notify');
     }
 
-    public function animal(){
-        return $this->hasOne('App\Animal', 'id', 'acode');
+
+    public function getShownUnameAttribute($value){
+      if($this->name_shown){
+          return $this->uname;
+      }else{
+          return Config::get('view.hidden');
+      }
     }
 }

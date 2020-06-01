@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Config;
 
 class Animal extends Model
 {
@@ -12,9 +13,43 @@ class Animal extends Model
       return Animal::find($value)->aname;
   }
 
+
   public function getBdebilAttribute($value){
       return Animal::find($value)->aname;
   }
+
+
+  public function getT60AnameAttribute($value){
+      return $this->aname;
+  }
+
+
+  public function getAnameAttribute($value){
+    if($this->type_shown % 2){
+        return $value;
+    }else{
+        return Config::get('view.hidden');
+    }
+  }
+
+
+  public function getT12AnameAttribute($value){
+    if($this->type_shown % 4){
+        return $value;
+    }else{
+        return Config::get('view.hidden');
+    }
+  }
+
+
+  public function getT3AnameAttribute($value){
+    if($this->type_shown % 8){
+        return $value;
+    }else{
+        return Config::get('view.hidden');
+    }
+  }
+
 
 /*敗北の記録
   public function orderByT12acode($direction = 'desc'){

@@ -92,7 +92,7 @@
           @if( $mode == 'team' )
             <td>{{ $member->name }}</td>
           @else
-            <td>{{ $member->uname }}</td>
+            <td>{{ $member->shown_uname }}</td>
           @endif
           <td>{{ $member->birthday }}</td>
           <td>{!! $services->getLink($member->animal->aname) !!}</td>
