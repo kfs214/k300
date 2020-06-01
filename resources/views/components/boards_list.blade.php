@@ -1,7 +1,10 @@
-@isset( $boards )
+@isset( $boards[0] )
   @if( $mode == 'home' )
     <form method="POST">
       @csrf
+  @endif
+  @if( session('status') )
+    {{ session('status') }}
   @endif
   <table>
     <tr>

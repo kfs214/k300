@@ -11,6 +11,6 @@
   <form method="POST">
     @csrf
     <button type="submit" name="join" value="true">参加する</button>
-    <button onClick="location.href='{{ $url->previous() }}'">戻る</button>
+    <button type="button" onClick="location.href='{{ route( 'boards.board.index', ['shown_id' => $board->shown_id]) }}'">戻る</button>
   </form>
 @endsection

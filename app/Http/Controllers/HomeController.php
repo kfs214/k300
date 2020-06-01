@@ -38,6 +38,8 @@ class HomeController extends Controller
 
         $title = 'マイページ';
 
+        session( ['redirect_to' => route( 'home.mypage' )] );
+
         return view('home.index', compact('user', 'animal', 'boards', 'title',));
     }
 

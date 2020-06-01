@@ -5,11 +5,11 @@
   <h1>{{ $board->name }}に書き込みます。</h1>
   <h2>投稿内容</h2>
   <p>
-    {{ $content }}
+    {{ session('content') }}
   </p>
   <form method="POST">
     @csrf
     <button type="submit" name="confirmed" value="true">投稿する</button>
-    <button onClick="location.href='{{ $url->previous() }}'">戻る</button>
+    <button type="button" onClick="location.href='{{ route( 'boards.board.index', ['shown_id' => $board->shown_id]) }}#new_post'">戻る</button>
   </form>
 @endsection

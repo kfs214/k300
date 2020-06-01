@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Board;
 use App\Post;
+use DB;
 use URL;
 use Illuminate\Support\Facades\Auth;
 use App\Services\AnimalService;
@@ -20,7 +21,30 @@ class BoardsController extends Controller
             $board->latest_post = $latest_post;
         }
 
+        session( ['redirect_to' => route( 'boards.index' )] );
+
         return view( 'boards.index', compact('boards') );
+    }
+
+
+    public function join($shown_id, Request $request){
+        Board::where( compact('shown_id') )->first()->users()->attach( Auth::id() );
+
+        /*DB::table('user_board')->insert([
+          'user_id' => Auth::id(),
+          'board_id' => Board::select( 'id' )->where( compact('shown_id') )->first()->id,
+        ]);*/
+
+        return redirect( route('boards.board.index', compact('shown_id')) )->with( 'status', '参加しました' );
+    }
+
+
+    public function leave($shown_id, Request $request){
+        Board::where( compact('shown_id') )->first()->users()->detach( Auth::id() );
+
+        $redirect_to = session( 'redirect_to' ) ?? route( 'home.mypage' );
+
+        return redirect( $redirect_to )->with( 'status', '退出しました' );
     }
 
 
@@ -49,12 +73,38 @@ class BoardsController extends Controller
 
 
     public function showConfirmJoin($shown_id, Request $request){
-        $board = Board::select( 'id', 'hidden')->where( compact('shown_id') )->first();
+        $board = Board::select( 'id', 'name', 'shown_id', 'hidden')->where( compact('shown_id') )->first();
 
         //非公開掲示板には署名付きURLが必須
         if( $board->hidden && !$request->hasValidSignature() ){
             abort(403);
         }
+
+        if( $board->users()->pluck('id')->contains( Auth::id() ) ){
+            return redirect( route( 'boards.board.index', compact( 'shown_id' ) ) )->with( 'status', '既に参加しています。');
+        }
+
+        return view( 'boards.join', compact('board') );
+    }
+
+
+    public function showConfirmLeave($shown_id, Request $request){
+        $board = Board::select( 'id', 'name', 'shown_id', 'hidden')->where( compact('shown_id') )->first();
+
+        if( !$board->users()->pluck('id')->contains( Auth::id() ) ){
+            return redirect( route( 'boards.board.index', compact( 'shown_id' ) ) )->with( 'status', '参加していません。');
+        }
+
+        return view( 'boards.leave', compact('board') );
+    }
+
+
+    public function showConfirmMessage($shown_id, Request $request){
+          $board = Board::select('shown_id', 'name')->where(compact('shown_id'))->first();
+
+          $request->session()->reflash();
+
+          return view('boards.confirm_message', compact('board'));
     }
 
 
@@ -83,5 +133,29 @@ class BoardsController extends Controller
       $params = ['selected_animals', 'grouped_animals', 'animal_groups', 'board', 'members', 'members_count'];
 
       return view('boards.members', compact( $params ));
+    }
+
+
+    public function storeMessage($shown_id, Post $post){
+        $data = [
+          'content' => session('content'),
+          'board_id' => Board::where(compact('shown_id'))->first()->id,
+          'user_id' => Auth::id(),
+        ];
+
+        $post->fill($data)->save();
+
+        return redirect( route('boards.board.index', compact('shown_id')));
+    }
+
+
+    public function validateMessage($shown_id, Request $request){
+        $data = $request->validate([
+          'content' => 'required|max:500',
+        ]);
+
+        $content = $data['content'];
+
+        return redirect( route( 'boards.board.confirm', compact( 'shown_id' )))->with(compact( 'content' ));
     }
 }

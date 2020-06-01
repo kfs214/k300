@@ -60,11 +60,16 @@ class AnimalService{
 
 
   public static function searchBy($animal_groups, $request, $filters = []){
+    //初期化系
     $selected_animals = [
       'acode' => '',
       't12aname' => '',
       'rhythm' => '',
     ];
+
+/*    if( url()->current() != url()->previous() ){
+        session()->forget('filters');
+    }*/
 
     //絞り込み系
     if( $search_by = $request->search_by ){
@@ -99,7 +104,8 @@ class AnimalService{
           $selected_animals = session('selected_animals');
       }
 
-      session(compact('filters', 'selected_animals'));
+      session(compact('selected_animals'));
+      session()->flash('filters', $filters);
 
       return compact('filters', 'selected_animals');
   }

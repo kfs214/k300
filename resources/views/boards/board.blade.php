@@ -22,6 +22,7 @@
 
   <h2>投稿一覧</h2>
   @isset( $posts )
+    <a href="#new_post">書き込む</a>
     <table>
       <tr>
         <th>投稿者</th>
@@ -41,12 +42,14 @@
     まだ投稿がないようです
   @endisset
   @if( $mode == 'joined' )
-    <h2>新規投稿</h2>
+    <h2 id="new_post">新規投稿</h2>
     <form method="post">
       @csrf
-      <textarea name="content">
-      </textarea>
+      <textarea name="content">{{ old('content') ?? session('content') ?? ''}}</textarea>
       <button type="submit">書き込む</button>
     </form>
+    @error('content')
+      {{$message}}
+    @enderror
   @endif
 @endsection
