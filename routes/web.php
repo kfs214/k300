@@ -41,28 +41,33 @@ Route::prefix('boards')->as('boards.')->group(function(){
   Route::get('', 'BoardsController@index')->name('index');
 
   //その他板系（要認証）
-  Route::get('create', 'BoardsController@showCreateBoardForm')->name('create');
-  Route::post('create', 'BoardsController@validateCreateBoard');
-  Route::get('confirm', 'BoardsController@showConfirmBoard')->name('confirm');
-  Route::post('confirm', 'BoardsController@storeBoard');
+  Route::middleware('auth')->group(function(){
+    Route::get('create', 'BoardsController@showCreateBoardForm')->name('create');
+    Route::post('create', 'BoardsController@validateCreateBoard');
+    Route::get('confirm', 'BoardsController@showConfirmBoard')->name('confirm');
+    Route::post('confirm', 'BoardsController@storeBoard');
+  });
 
   //投稿メッセージ系
-  Route::prefix('{id}')->as('board.')->group(function(){
+  Route::prefix('{shown_id}')->as('board.')->middleware('joined')->group(function(){
     //投稿・メンバーの閲覧（認証不要）
     Route::get('', 'BoardsController@showBoard')->name('index');
     Route::get('members', 'BoardsController@showMembers')->name('members');
+    Route::post('members', 'BoardsController@showMembers');
 
     //その他投稿メッセージ系（要認証）
     Route::middleware('auth')->group(function(){
       Route::post('', 'BoardsController@validateMessage');
       Route::get('confirm', 'BoardsController@showConfirmMessage')->name('confirm');
       Route::post('confirm', 'BoardsController@storeMessage');
-      Route::get('join', 'BoardsController@showConfirmJoin')->name('join');
-      Route::post('join', 'BoardsController@join');
       Route::get('leave', 'BoardsController@showConfirmLeave')->name('leave');
       Route::post('leave', 'BoardsController@leave');
     });
+  });
 
-
+  //joinだけは非公開掲示板でもjoined不要
+  Route::middleware('auth')->prefix('{shown_id}')->as('board.')->group(function(){
+    Route::get('join', 'BoardsController@showConfirmJoin')->name('join');
+    Route::post('join', 'BoardsController@join');
   });
 });

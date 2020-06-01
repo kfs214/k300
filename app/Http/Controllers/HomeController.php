@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Animal;
-use App\User;
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

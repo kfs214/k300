@@ -61,22 +61,39 @@
           </button>
       </form>
     </div>
-  @endunless
     追加した順に表示する<a href="{{ url()->current() }}?direction=asc">▲</a><a href="{{ url()->current() }}">▼</a><br>
+  @endunless
     <table>
       <tr>
-        <th>{!! $services->sortLinkGen('お名前', 'name') !!}</th>
-        <th>{!! $services->sortLinkGen('生年月日', 'birthday') !!}</th>
-        <th>{!! $services->sortLinkGen('60タイプ', 'acode') !!}</th>
-        <th>{!! $services->sortLinkGen('12タイプ', 't12aname') !!}</th>
-        <th>{!! $services->sortLinkGen('3タイプ', 't3aname') !!}</th>
-        <th>{!! $services->sortLinkGen('リズム', 'rhythm') !!}</th>
+        @if( $mode == 'board_index' )
+          <th>お名前</th>
+          <th>生年月日</th>
+          <th>60タイプ</th>
+          <th>12タイプ</th>
+          <th>3タイプ</th>
+          <th>リズム</th>
+        @else
+          @if( $mode == 'team' )
+            <th>{!! $services->sortLinkGen('お名前', 'name') !!}</th>
+          @else
+            <th>{!! $services->sortLinkGen('お名前', 'uname') !!}</th>
+          @endif
+          <th>{!! $services->sortLinkGen('生年月日', 'birthday') !!}</th>
+          <th>{!! $services->sortLinkGen('60タイプ', 'acode') !!}</th>
+          <th>{!! $services->sortLinkGen('12タイプ', 't12aname') !!}</th>
+          <th>{!! $services->sortLinkGen('3タイプ', 't3aname') !!}</th>
+          <th>{!! $services->sortLinkGen('リズム', 'rhythm') !!}</th>
+        @endif
         <th>ホワイトエンジェル</th>
         <th>ブラックデビル</th>
       </tr>
       @foreach($members as $member)
         <tr>
-          <td>{{ $member->name }}</td>
+          @if( $mode == 'team' )
+            <td>{{ $member->name }}</td>
+          @else
+            <td>{{ $member->uname }}</td>
+          @endif
           <td>{{ $member->birthday }}</td>
           <td>{!! $services->getLink($member->animal->aname) !!}</td>
           <td>{!! $services->getLink($member->animal->t12aname) !!}</td>
@@ -90,7 +107,9 @@
     @unless( $members[0] )
       該当するメンバーはいないようです。<br>
     @endunless
-    {{ $members->appends(request()->query())->links() }}
+    @unless( $mode == 'board_index' )
+      {{ $members->appends(request()->query())->links() }}
+    @endunless
 @else
     まだメンバーがいないようです。
 @endif

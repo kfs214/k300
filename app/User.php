@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Animal;
 
 class User extends Authenticatable implements MustVerifyEmailContract
 {
@@ -41,5 +42,9 @@ class User extends Authenticatable implements MustVerifyEmailContract
 
     public function boards(){
         return $this->belongsToMany('App\Board', 'user_board')->withPivot('notify');
+    }
+
+    public function animal(){
+        return $this->hasOne('App\Animal', 'id', 'acode');
     }
 }

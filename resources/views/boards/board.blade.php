@@ -4,15 +4,18 @@
 @section('content')
   <h1>{{ $board->name }}</h1>
   @if( $mode == 'joined' )
-    <button onClick="location.href='{{ route('boards.board.leave') }}'">退出する</button>
+    @if( $board->hidden )
+      招待用リンク：<input type="text" value="{{ $join_url }}"><br>
+    @endif
+    <button onClick="location.href='{{ route('boards.board.leave', ['shown_id' => $board->shown_id]) }}'">退出する</button>
   @else
-    <button onClick="location.href='{{ route('boards.board.join') }}'">参加する</button>
+    <button onClick="location.href='{{ route('boards.board.join', ['shown_id' => $board->shown_id]) }}'">参加する</button>
   @endif
 
   <h2>最近参加したユーザー</h2>
-  @isset( $members )
-    <a href="{{ route('boards.board.members') }}">この掲示板に参加している全てのユーザーを表示する</a>
-    @include('layouts.members_list', ['mode' => 'board_index'])
+  @if( $members_count )
+    <a href="{{ route('boards.board.members', ['shown_id' => $board->shown_id]) }}">この掲示板に参加している全てのユーザーを表示する</a><br>
+    @include('components.members_list', ['mode' => 'board_index'])
   @else
     誰もいなくなってしまったようです。
   @endisset
@@ -33,16 +36,17 @@
         </tr>
       @endforeach
     </table>
-    {{ $post->appends(request()->query())->links() }}
+    {{ $posts->appends(request()->query())->links() }}
   @else
     まだ投稿がないようです
   @endisset
-
-  <h2>新規投稿</h2>
-  <form method="post">
-    @csrf
-    <textarea name="content">
-    </textarea>
-    <button type="submit">書き込む</button>
-  </form>
+  @if( $mode == 'joined' )
+    <h2>新規投稿</h2>
+    <form method="post">
+      @csrf
+      <textarea name="content">
+      </textarea>
+      <button type="submit">書き込む</button>
+    </form>
+  @endif
 @endsection
