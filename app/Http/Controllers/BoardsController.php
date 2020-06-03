@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Board;
+use App\Mail\SendNotificationMail;
 use App\Post;
 use App\Rules\AlphaDashHalf;
-use DB;
-use URL;
-use Illuminate\Support\Facades\Auth;
 use App\Services\AnimalService;
+use Config;
+use DB;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use Mail;
+use URL;
 
 class BoardsController extends Controller
 {
@@ -29,12 +33,29 @@ class BoardsController extends Controller
 
 
     public function join($shown_id, Request $request){
-        Board::where( compact('shown_id') )->first()->users()->attach( Auth::id() );
+        $board = Board::where( compact('shown_id') )->first();
 
         /*DB::table('user_board')->insert([
           'user_id' => Auth::id(),
           'board_id' => Board::select( 'id' )->where( compact('shown_id') )->first()->id,
         ]);*/
+
+        //通知
+        $filters = [
+          ['notify_users', 'push'],
+          ['user_board.notify', 1],
+        ];
+
+        $to = $board->users()->where($filters)->get();
+
+        $shown_uname = Auth::user()->shown_uname == Config::get('view.hidden') ? Config::get('view.hidden_uname') : Auth::user()->shown_uname . 'さん';
+
+        $user_info = $shown_uname . '（動物：' . Auth::user()->aname . '）';
+
+        Mail::to($to)->send(new SendNotificationMail($board->name, '', $user_info));
+
+        //join
+        $board->users()->attach( Auth::id() );
 
         return redirect( route('boards.board.index', compact('shown_id')) )->with( 'status', '参加しました' );
     }
@@ -171,13 +192,29 @@ class BoardsController extends Controller
 
 
     public function storeMessage($shown_id, Post $post){
+        //保存
+        $board = Board::where(compact('shown_id'))->first();
+
         $data = [
           'content' => session('content'),
-          'board_id' => Board::where(compact('shown_id'))->first()->id,
+          'board_id' => $board->id,
           'user_id' => Auth::id(),
         ];
 
         $post->fill($data)->save();
+
+        //通知メール送信先の絞り込みと投稿内容取得、そして送信
+        $filters = [
+          ['notify_posts', 'push'],
+          ['user_board.notify', 1],
+          ['users.id', '<>', $data['user_id']],
+        ];
+
+        $to = $board->users()->where($filters)->get();
+
+        $post_index = Str::limit($data['content'], 40, '...');
+
+        Mail::to($to)->send(new SendNotificationMail($board->name, $post_index, ''));
 
         return redirect( route('boards.board.index', compact('shown_id')));
     }

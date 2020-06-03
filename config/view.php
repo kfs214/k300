@@ -34,5 +34,6 @@ return [
     ),
 
     'hidden' => '非公開',
+    'hidden_uname' => '匿名のユーザー',
 
 ];

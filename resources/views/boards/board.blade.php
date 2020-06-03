@@ -22,7 +22,9 @@
 
   <h2>投稿一覧</h2>
   @isset( $posts[0] )
-    <a href="#new_post">書き込む</a>
+    @if($mode == 'joined')
+      <a href="#new_post">書き込む</a>
+    @endif
     <table>
       <tr>
         <th>投稿者</th>
