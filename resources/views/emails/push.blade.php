@@ -1,9 +1,11 @@
 @component('mail::message')
   @if($post_index)
-    <h1>{{ $board_name }}に書き込みがありました</h1>
-    <p>{{ $post_index }}</p>
+# {{ $board->name }}に書き込みがありました
+{{ $post_index }}
   @elseif($user_info)
-    <h1>{{ $board_name }}に新しいユーザーが参加しました</h1>
-    <p>{{ $user_info }}</p>
+# {{ $board->name }}に新しいユーザーが参加しました
+{{ $user_info }}
   @endif
+
+[{{ $board->name }}を表示する]({{ $board->url }})
 @endcomponent
