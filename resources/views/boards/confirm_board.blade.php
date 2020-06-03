@@ -14,14 +14,15 @@
         <th>掲示板ID</th>
         <td>{{ session('shown_id') }}</td>
       </tr>
+      <tr>
+        <th>公開設定</th>
+        <td>{{ session('hidden') ? '非' : ''}}公開掲示板にする</td>
+      </tr>
     </table>
     @if( session('hidden') )
-      非公開掲示板にする
       非公開掲示板は掲示板一覧に表示されず、参加するためには専用のリンクを知っている必要があります。
-    @else
-      公開掲示板にする
     @endif
-    <button type="submit" name="confirmed" value="true">掲示板を作成する</button>
-    <button onClick="location.href='{{ $url->previous() }}'">下書きを破棄して戻る</button>
+    <br><button type="submit" name="confirmed" value="true">掲示板を作成する</button>
+    <button type="button" onClick="location.href='{{ route('boards.create') }}'">戻る</button>
   </form>
 @endsection

@@ -21,7 +21,7 @@
   @endisset
 
   <h2>投稿一覧</h2>
-  @isset( $posts )
+  @isset( $posts[0] )
     <a href="#new_post">書き込む</a>
     <table>
       <tr>
@@ -31,7 +31,7 @@
       </tr>
       @foreach( $posts as $post)
         <tr>
-          <td>{{ $post->user->uname }}（{{ $post->user->animal->aname }}）</td>
+          <td>{{ $post->user->shown_uname }}（{{ $post->user->aname }}）</td>
           <td>{{ $post->content }}</td>
           <td>{{ $post->created_at }}</td>
         </tr>

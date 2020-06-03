@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Board;
 use App\Post;
+use App\Rules\AlphaDashHalf;
 use DB;
 use URL;
 use Illuminate\Support\Facades\Auth;
@@ -74,6 +75,13 @@ class BoardsController extends Controller
     }
 
 
+    public function showConfirmBoard(Request $request){
+        $request->session()->reflash();
+
+        return view( 'boards.confirm_board' );
+    }
+
+
     public function showConfirmJoin($shown_id, Request $request){
         $board = Board::select( 'id', 'name', 'shown_id', 'hidden')->where( compact('shown_id') )->first();
 
@@ -110,6 +118,13 @@ class BoardsController extends Controller
     }
 
 
+    public function showCreateBoardForm(){
+      $redirect_to = session( 'redirect_to' ) ?? route( 'home.mypage' );
+
+      return view( 'boards.create', compact('redirect_to') );
+    }
+
+
     public function showMembers($shown_id, Request $request){
       //初期化系
       $sort = $request->sort ?? 'created_at';
@@ -138,6 +153,23 @@ class BoardsController extends Controller
     }
 
 
+    public function storeBoard(Board $board){
+        $data = [
+          'name' => session('board_name'),
+          'shown_id' => session('shown_id'),
+          'hidden' => session('hidden'),
+        ];
+
+        $shown_id = $data['shown_id'];
+
+        $board->fill($data)->save();
+
+        $board->where( compact('shown_id'))->first()->users()->attach( Auth::id());
+
+        return redirect( route('boards.board.index', compact('shown_id')));
+    }
+
+
     public function storeMessage($shown_id, Post $post){
         $data = [
           'content' => session('content'),
@@ -148,6 +180,21 @@ class BoardsController extends Controller
         $post->fill($data)->save();
 
         return redirect( route('boards.board.index', compact('shown_id')));
+    }
+
+
+    public function validateCreateBoard(Request $request){
+      $data = $request->validate([
+        'board_name' => 'required|string|max:20|unique:boards,name',
+        'shown_id' => ['required', 'max:20', new AlphaDashHalf, 'unique:boards'],
+        'hidden' => 'required|boolean',
+      ]);
+
+      $board_name = $data[ 'board_name' ];
+      $shown_id = $data[ 'shown_id' ];
+      $hidden = $data[ 'hidden' ];
+
+      return redirect( route('boards.confirm') )->with( compact('board_name', 'shown_id', 'hidden'));
     }
 
 
