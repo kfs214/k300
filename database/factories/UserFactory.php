@@ -29,5 +29,8 @@ $factory->define(User::class, function (Faker $faker) {
         'type_shown' => $faker->randomElement([7, 6, 4, 0]),
         'comment' => $faker->realText(100),
         'remember_token' => Str::random(10),
+        'notify_posts' => $faker->randomElement(['push', 'everyday', 'everyweek', 'disabled']),
+        'notify_users' => $faker->randomElement(['push', 'everyday', 'everyweek', 'disabled']),
+        'notify_messages' => $faker->randomElement(['push', 'everyday', 'everyweek', 'disabled']),
     ];
 });
