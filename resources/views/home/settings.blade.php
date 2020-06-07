@@ -19,7 +19,7 @@
         </td>
       </tr>
       <tr>
-        <th>参加中の掲示板への新しい書き込み</th>
+        <th>参加中の掲示板への新しいユーザー</th>
         <td><select name="notify_users">
           <option value="push" {{ $user->notify_users == 'push' ? 'selected' : ''}}>随時</option>
           <option value="disabled" {{ $user->notify_users == 'disabled' ? 'selected' : ''}}>通知しない</option>

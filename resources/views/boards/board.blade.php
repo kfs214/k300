@@ -9,7 +9,9 @@
     @endif
     <button onClick="location.href='{{ route('boards.board.leave', ['shown_id' => $board->shown_id]) }}'">退出する</button>
   @else
-    <button onClick="location.href='{{ route('boards.board.join', ['shown_id' => $board->shown_id]) }}'">参加する</button>
+    @auth
+      <button onClick="location.href='{{ route('boards.board.join', ['shown_id' => $board->shown_id]) }}'">参加する</button>
+    @endauth
   @endif
 
   <h2>最近参加したユーザー</h2>

@@ -19,7 +19,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
      * @var array
      */
     protected $fillable = [
-        'uname', 'birthday', 'acode', 'comment', 'name_shown', 'type_shown', 'email', 'password', 'notify_posts', 'notify_users', 'notify_messages',
+        'uname', 'birthday', 'acode', 'comment', 'name_shown', 'type_shown', 'email', 'password', 'notify_posts', 'notify_users', 'notify_messages', 'birthday_shown',
     ];
 
     /**
@@ -69,6 +69,11 @@ class User extends Authenticatable implements MustVerifyEmailContract
       }else{
           return Config::get('view.hidden_aname');
       }
+    }
+    
+    
+    public function getShownBirthdayAttribute($value){
+        return $this->birthday_shown ? $this->birthday : Config::get('view.hidden');
     }
 
 

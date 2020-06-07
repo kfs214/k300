@@ -67,7 +67,10 @@
                             <label for="profile_shown" class="col-md-4 col-form-label text-md-right">公開範囲設定</label>
 
                             <div class="col-md-6">
-                                <lavel for="name_hidden"><input type="checkbox" id="name_hidden" name="name_hidden" value="true">匿名を利用する</lavel><br>
+                                <input type="hidden" name="name_shown" value="1">
+                                <lavel for="name_shown"><input type="checkbox" id="name_shown" name="name_shown" value="0">匿名を利用する</lavel><br>
+                                <input type="hidden" name="birthday_shown" value="1">
+                                <lavel for="birthday_shown"><input type="checkbox" id="birthday_shown" name="birthday_shown" value="0">生年月日を非公開にする</lavel><br>
                                 <select name="type_shown">
                                   <option value="7">通常</option>
                                   <option value="6">60タイプ分類を非公開</option>

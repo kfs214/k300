@@ -62,6 +62,7 @@
       </form>
     </div>
     追加した順に表示する<a href="{{ url()->current() }}?direction=asc">▲</a><a href="{{ url()->current() }}">▼</a><br>
+    ※並べ替えを有効にすると、その項目を非公開に設定しているユーザーは表示されなくなります。全てのユーザーを再び表示するには、「追加した順に表示」してください。
   @endunless
     <table>
       <tr>
@@ -86,6 +87,9 @@
         @endif
         <th>ホワイトエンジェル</th>
         <th>ブラックデビル</th>
+        @unless($mode == 'team')
+          <th>コメント</th>
+        @endunless
       </tr>
       @foreach($members as $member)
         <tr>
@@ -100,13 +104,14 @@
             <td>{!! $services->getLink($member->animal->bdebil) !!}</td>
           @else
             <td>{{ $member->shown_uname }}</td>
-            <td>{{ $member->birthday }}</td>
+            <td>{{ $member->shown_birthday }}</td>
             <td>{!! $services->getLink($member->aname) !!}</td>
             <td>{!! $services->getLink($member->t12aname) !!}</td>
             <td>{!! $services->getLink($member->t3aname) !!}</td>
             <td>{!! $services->getLink($member->rhythm) !!}</td>
             <td>{!! $services->getLink($member->wangel) !!}</td>
             <td>{!! $services->getLink($member->bdebil) !!}</td>
+            <td>{{ Str::limit($member->comment, 40, '...') }}</td>
           @endif
         </tr>
       @endforeach

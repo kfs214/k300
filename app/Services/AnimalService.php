@@ -75,6 +75,7 @@ class AnimalService{
 /*    if( url()->current() != url()->previous() ){
         session()->forget('filters');
     }*/
+    
 
     //絞り込み系
     if( $search_by = $request->search_by ){
@@ -83,21 +84,26 @@ class AnimalService{
 
       }elseif( $search_by == 'acode' ){
           $filters[] = ['acode', $request->acode,];
+          $filters[] = ['type_shown', 7];
           $selected_animals['acode'] = $request->acode;
 
       }elseif( $search_by == 'groups' ){
           if( $selected_animals['rhythm'] = $request->rhythm ){
               $filters[] = ['rhythm', $request->rhythm];
+              $filters[] = ['type_shown', 7];
           }
 
           if( $animal_groups['t3anames']->contains( $request->t12aname ) ){
              $filters[] = ['t3aname', $request->t12aname,];
+             $filters[] = ['type_shown', '>=', 4];
 
           }elseif( $animal_groups['t12anames_temp']->pluck('t12aname')->contains( $request->t12aname ) ){
              $filters[] = ['t12aname', $request->t12aname,];
+             $filters[] = ['type_shown', '>=', 6];
 
           }elseif( $request->t12aname ){
              $filters[] = ['t4code', $request->t12aname,];
+             $filters[] = ['type_shown', '>=', 6];
 
           }
 
@@ -111,6 +117,29 @@ class AnimalService{
 
       session(compact('selected_animals'));
       session()->flash('filters', $filters);
+      
+      
+      //並べ替え有効時、非公開設定のユーザーは表示しない。
+      if( $request->sort ){
+        switch( $request->sort ){
+            case 'uname':
+              $filters[] = ['name_shown', 1];
+              break;
+            case 'birthday':
+              $filters[] = ['birthday_shown', 1];
+              break;
+            case 't12aname':
+              $filters[] = ['type_shown', '>=', 6];
+              break;
+            case 't3aname':
+              $filters[] = ['type_shown', '>=', 4];
+              break;
+            case 'acode':
+            case 'rhythm':
+              $filters[] = ['type_shown', 7];
+              break;
+        }
+      }
 
       return compact('filters', 'selected_animals');
   }

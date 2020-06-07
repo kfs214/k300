@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         );
 
         //自分以外に10人のユーザーを作成
-        factory(App\User::class, 10)->create();
+        factory(App\User::class, 100)->create();
 
         //user_id == 1 つまり「牛島一樹」に100人メンバーを登録
         factory(App\TeamMember::class, 100)->create();
@@ -32,10 +32,19 @@ class DatabaseSeeder extends Seeder
 
         $faker = Faker\Factory::create();
         //中間テーブルに情報追加
-        for($i =7; $i < 80; $i++){
+        for($i = 1; $i < 100; $i++){
             DB::table('user_board')->insert([
-              'user_id' => floor( $i / 10 ) + 1,
-              'board_id' => $i % 10 + 1,
+              'user_id' => $i,
+              'board_id' => 1,
+              'notify' => $faker->boolean,
+              'created_at' => $faker->dateTime,
+            ]);
+        }
+        
+        for($i = 17; $i < 70; $i++){
+            DB::table('user_board')->insert([
+              'user_id' => floor( $i / 9 ) + 1,
+              'board_id' => $i % 9 + 2,
               'notify' => $faker->boolean,
               'created_at' => $faker->dateTime,
             ]);
