@@ -10,7 +10,7 @@ class Board extends Model
 
     //参加しているユーザーを取得
     public function users(){
-        return $this->belongsToMany('App\User', 'user_board')->withPivot('notify');
+        return $this->belongsToMany('App\User', 'user_board')->withPivot('notify')->withTimestamps();
     }
 
 

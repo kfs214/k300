@@ -33,7 +33,7 @@ class SendNotificationMail extends Mailable
     public function build()
     {
         return $this->markdown('emails.push')
-        ->subject('this is a test mail')
+        ->subject('新着通知があります【' . config('app.name') . '】')
         ->with([
           'board' => $this->board,
           'post_index' => $this->post_index,

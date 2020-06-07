@@ -18,6 +18,7 @@ class CreateUserBoardTable extends Migration
             $table->bigInteger('board_id')->unsigned();
             $table->boolean('notify')->default(1);
             $table->primary(['user_id', 'board_id']);
+            $table->timestamps();
 
             //外部キー制約
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

@@ -10,25 +10,20 @@
     @csrf
     <table>
       <tr>
-        <th>通知</th>
-        <th>随時</th>
-        <th>毎朝9時</th>
-        <th>毎週土曜日朝9時</th>
-        <th>通知しない</th>
+        <th>参加中の掲示板への新しい書き込み</th>
+        <td><select name="notify_posts">
+          <option value="push" {{ $user->notify_posts == 'push' ? 'selected' : ''}}>随時</option>
+          <option value="everyday" {{ $user->notify_posts == 'everyday' ? 'selected' : ''}}>毎朝9時</option>
+          <option value="everyweek" {{ $user->notify_posts == 'everyweek' ? 'selected' : ''}}>毎週土曜日朝9時</option>
+          <option value="disabled" {{ $user->notify_posts == 'disabled' ? 'selected' : ''}}>通知しない</option>
+        </td>
       </tr>
       <tr>
         <th>参加中の掲示板への新しい書き込み</th>
-        <td><input type="radio" name="notify_posts" value="push" {{ $user->notify_posts == 'push' ? 'checked' : ''}}></td>
-        <td><input type="radio" name="notify_posts" value="everyday" {{ $user->notify_posts == 'everyday' ? 'checked' : ''}}></td>
-        <td><input type="radio" name="notify_posts" value="everyweek" {{ $user->notify_posts == 'everyweek' ? 'checked' : ''}}></td>
-        <td><input type="radio" name="notify_posts" value="disabled" {{ $user->notify_posts == 'disabled' ? 'checked' : ''}}></td>
-      </tr>
-      <tr>
-        <th>参加中の掲示板への新しいユーザーの参加</th>
-        <td><input type="radio" name="notify_users" value="push" {{ $user->notify_users == 'push' ? 'checked' : ''}}></td>
-        <td><input type="radio" name="notify_users" value="everyday" {{ $user->notify_users == 'everyday' ? 'checked' : ''}}></td>
-        <td><input type="radio" name="notify_users" value="everyweek" {{ $user->notify_users == 'everyweek' ? 'checked' : ''}}></td>
-        <td><input type="radio" name="notify_users" value="disaled" {{ $user->notify_users == 'disabled' ? 'checked' : ''}}></td>
+        <td><select name="notify_users">
+          <option value="push" {{ $user->notify_users == 'push' ? 'selected' : ''}}>随時</option>
+          <option value="disabled" {{ $user->notify_users == 'disabled' ? 'selected' : ''}}>通知しない</option>
+        </td>
       </tr>
     </table>
     <button type="submit">通知設定を更新する</button>

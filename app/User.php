@@ -51,6 +51,38 @@ class User extends Authenticatable implements MustVerifyEmailContract
     }
 
 
+    public function getShownUnameAttribute($value){
+      if($this->name_shown){
+          return $this->uname;
+      }else{
+          return Config::get('view.hidden');
+      }
+    }
+
+    public function getShownAnameAttribute($value){
+      if($this->type_shown % 2){
+          return $this->animal()->first()->aname;
+      }elseif($this->type_shown % 4){
+          return $this->animal()->first()->t12aname;
+      }elseif($this->type_shown % 8){
+          return $this->animal()->first()->t3aname;
+      }else{
+          return Config::get('view.hidden_aname');
+      }
+    }
+
+
+    public function getProfileAttribute($value){
+      if($this->name_shown){
+          $shown_uname = $this->uname . 'さん';
+      }else{
+          $shown_uname = Config::get('view.hidden');
+      }
+
+      return $shown_uname . '（' . $this->shown_aname . '）';
+    }
+
+
     public function getAnameAttribute($value){
       if($this->type_shown % 2){
           return $this->animal()->first()->aname;
@@ -99,15 +131,6 @@ class User extends Authenticatable implements MustVerifyEmailContract
     public function getT3AnameAttribute($value){
       if($this->type_shown % 8){
           return $this->animal()->first()->t3aname;
-      }else{
-          return Config::get('view.hidden');
-      }
-    }
-
-
-    public function getShownUnameAttribute($value){
-      if($this->name_shown){
-          return $this->uname;
       }else{
           return Config::get('view.hidden');
       }

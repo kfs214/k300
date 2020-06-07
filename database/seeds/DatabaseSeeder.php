@@ -37,6 +37,7 @@ class DatabaseSeeder extends Seeder
               'user_id' => floor( $i / 10 ) + 1,
               'board_id' => $i % 10 + 1,
               'notify' => $faker->boolean,
+              'created_at' => $faker->dateTime,
             ]);
         }
     }

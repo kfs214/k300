@@ -50,7 +50,7 @@ class BoardsController extends Controller
 
         $shown_uname = Auth::user()->shown_uname == Config::get('view.hidden') ? Config::get('view.hidden_uname') : Auth::user()->shown_uname . 'さん';
 
-        $user_info = $shown_uname . '（動物：' . Auth::user()->aname . '）';
+        $user_info = $shown_uname . '（' . Auth::user()->shown_aname . '）';
 
         Mail::to($to)->send(new SendNotificationMail($board, '', $user_info));
 
