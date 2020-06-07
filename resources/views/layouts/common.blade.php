@@ -24,7 +24,7 @@
                 <li><a href="{{ route('login') }}">LOGIN</a></li>
                 <li><a href="{{ route('register') }}">新規登録</a></li>
               @endauth
-                <li><a href="{{ route('boards.index') }}">掲示板</a></li>
+                <li><a href="{{ route('boards.index') }}">公開掲示板</a></li>
                 <li><a href="{{ route('simple.form') }}">簡易診断</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->

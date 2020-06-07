@@ -33,7 +33,7 @@
       </tr>
       @foreach( $posts as $post)
         <tr>
-          <td>{{ $post->user->shown_uname }}（{{ $post->user->aname }}）</td>
+          <td>{{ $post->user->shown_uname }}（{{ $post->user->shown_aname }}）</td>
           <td>{{ $post->content }}</td>
           <td>{{ $post->created_at }}</td>
         </tr>
@@ -47,7 +47,7 @@
     <h2 id="new_post">新規投稿</h2>
     <form method="post">
       @csrf
-      <textarea name="content">{{ old('content') ?? session('content') ?? ''}}</textarea>
+      <textarea name="content" {{ $errors->has('content') ? 'autofocus' : '' }}>{{ old('content') ?? session('content') ?? ''}}</textarea>
       <button type="submit">書き込む</button>
     </form>
     @error('content')

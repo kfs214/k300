@@ -46,7 +46,7 @@
 @isset( $user )
   <div><!-- 新着メッセージ一覧 --></div>
   <div>
-    <h1>参加中の掲示板一覧</h1>
+    <h1 id="boards">参加中の掲示板一覧</h1>
     @include('components.boards_list', ['mode' => 'home'])
   </div>
 @endisset

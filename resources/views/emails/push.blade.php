@@ -7,6 +7,6 @@
 {{ $user_info }}
   @endif
 
-[{{ $board->name }}を表示する]({{ $board->url }})
+[{{ $board->name }}を表示する]({{ $board->url }})　　
 [通知設定を変更する]({{ route('home.settings') }})
 @endcomponent
