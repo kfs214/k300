@@ -17,4 +17,5 @@
 [{{ $posts_onthe_board->first()->name }}を表示する]({{ route('boards.board.index', ['shown_id' => $shown_id ])}})
 * * * * *
 @endforeach
+[通知設定を変更する]({{ route('home.settings') }})
 @endcomponent

@@ -46,13 +46,16 @@ class BoardsController extends Controller
           ['user_board.notify', 1],
         ];
 
-        $to = $board->users()->where($filters)->get();
+        $to_emails = $board->users()->where($filters)->get();
 
         $shown_uname = Auth::user()->shown_uname == Config::get('view.hidden') ? Config::get('view.hidden_uname') : Auth::user()->shown_uname . 'さん';
 
         $user_info = $shown_uname . '（' . Auth::user()->shown_aname . '）';
-
-        Mail::to($to)->send(new SendNotificationMail($board, '', $user_info));
+        
+        foreach( $to_emails as $to ){
+            Mail::to($to)->send(new SendNotificationMail($board, '', $user_info));
+        }
+        
 
         //join
         $board->users()->attach( Auth::id() );
@@ -213,11 +216,13 @@ class BoardsController extends Controller
           ['users.id', '<>', $data['user_id']],
         ];
 
-        $to = $board->users()->where($filters)->get();
+        $to_emails = $board->users()->where($filters)->get();
 
         $post_index = Str::limit($data['content'], 40, '...');
-
-        Mail::to($to)->send(new SendNotificationMail($board, $post_index, ''));
+        
+        foreach( $to_emails as $to ){
+          Mail::to($to)->send(new SendNotificationMail($board, $post_index, ''));
+        }
 
         return redirect( route('boards.board.index', compact('shown_id')));
     }
