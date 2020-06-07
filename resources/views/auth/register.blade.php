@@ -16,7 +16,7 @@
                             <label for="uname" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="uname" type="text" class="form-control @error('uname') is-invalid @enderror" name="uname" value="{{ old('uname') }}" required autocomplete="name" autofocus>
+                                <input id="uname" type="text" class="form-control @error('uname') is-invalid @enderror" name="uname" value="{{ old('uname') }}" required autocomplete="name" {{ $errors->any() ? $errors->has('uname') ? 'autofocus' : '' : 'autofocus' }}>
 
                                 @error('uname')
                                     <span class="invalid-feedback" role="alert">
@@ -34,7 +34,7 @@
                                 <select id="bday_month" class="form-control"><option value="0">--</option></select>月
                                 <select id="bday_day" class="form-control"><option value="0">--</option></select>日​-->
 
-                                <input id="bday_year" type="number" class="form-control @error('bday_year') is-invalid @enderror" name="bday_year" value="{{ old('bday_year') }}" required autocomplete="bday" placeholder="1980">年
+                                <input id="bday_year" type="number" class="form-control @error('bday_year') is-invalid @enderror" name="bday_year" value="{{ old('bday_year') }}" required autocomplete="bday" placeholder="1980" {{ $errors->has('birthday') ? 'autofocus' : ''}}>年
                                 <input id="bday_month" type="number" class="form-control @error('bday_month') is-invalid @enderror" name="bday_month" value="{{ old('bday_month') }}" required autocomplete="bday" placeholder="2">月
                                 <input id="bday_day" type="number" class="form-control @error('bday_day') is-invalid @enderror" name="bday_day" value="{{ old('bday_day') }}" required autocomplete="bday" placeholder="14">日
 
@@ -42,7 +42,7 @@
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                    <strong>{{ $message }}</strong>
+                                    <strong><p>{{ $message }}</p></strong>
                                 @enderror
 
 
@@ -53,7 +53,7 @@
                             <label for="comment" class="col-md-4 col-form-label text-md-right">コメント</label>
 
                             <div class="col-md-6">
-                                <textarea id="comment" class="row-5 form-control @error('comment') is-invalid @enderror" name="comment" placeholder="ふんどし王子です。余市第1リフトで仕事してます。プログラマーやったり自衛官やったり家事代行やったりしてきました。南樽市場安くて幸せ。">{{ old('comment') }}</textarea>
+                                <textarea id="comment" class="row-5 form-control @error('comment') is-invalid @enderror" name="comment" placeholder="ふんどし王子です。余市第1リフトで仕事してます。プログラマーやったり自衛官やったり家事代行やったりしてきました。南樽市場安くて幸せ。" {{ $errors->has('comment') ? 'autofocus' : ''}}>{{ old('comment') }}</textarea>
 
                                 @error('comment')
                                     <span class="invalid-feedback" role="alert">
@@ -85,7 +85,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" {{ $errors->has('email') ? 'autofocus' : ''}}>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -99,7 +99,7 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" {{ $errors->has('password') ? 'autofocus' : ''}}>
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -113,7 +113,7 @@
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" {{ $errors->has('password_confirm') ? 'autofocus' : ''}}>
                             </div>
                         </div>
 

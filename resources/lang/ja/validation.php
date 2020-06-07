@@ -33,7 +33,7 @@ return [
     'confirmed'      => ':attributeと:attribute確認が一致しません。',
     'date'           => ':attributeは、正しい日付ではありません。',
     'date_equals'    => ':attributeは:dateに等しい日付でなければなりません。',
-    'date_format'    => ":attributeは、正しい日付の形式ではありません。",
+    'date_format'    => ":attributeが、正しい日付の形式ではありません。",
     'different'      => ':attributeと:otherには、異なるものを指定してください。',
     'digits'         => ':attributeは、:digits桁にしてください。',
     'digits_between' => ':attributeは、:min桁から:max桁にしてください。',
@@ -147,8 +147,12 @@ return [
     */
 
     'attributes' => [
-        'content' => '投稿内容',
+        'birthday' => '生年月日',
         'board_name' => '掲示板名',
+        'content' => '投稿内容',
+        'email' => 'メールアドレス',
+        'password' => 'パスワード',
+        'password_confirm' => 'パスワード(確認用)',
         'shown_id' => '掲示板ID',
     ],
 ];

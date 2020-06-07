@@ -75,13 +75,16 @@ class BoardsController extends Controller
 
         $join_url = '';
 
-        if( $board->users()->where( 'user_id', Auth::id() )->count() ){
+        if( !$request->user()->hasVerifiedEmail() ){
+            $mode = 'guest';
+            
+        }elseif( $board->users()->where( 'user_id', Auth::id() )->count() ){
             $mode = 'joined';
             if( $board->hidden ){
                 $join_url = URL::signedRoute('boards.board.join', ['shown_id' => $board->shown_id]);
             }
         }else{
-            $mode = 'guest';
+            $mode = 'auth';
         }
 
         $params = ['aname', 't12aname', 't3aname'];

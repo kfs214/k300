@@ -17,7 +17,7 @@ Route::get('', function () {
 
 Auth::routes(['verify' => true]);
 
-Route::prefix('home')->middleware('auth')->as('home.')->group(function(){
+Route::prefix('home')->middleware('verified')->as('home.')->group(function(){
   Route::get('', 'HomeController@index')->name('mypage');
   Route::post('', 'HomeController@updateIndividualSettings');
   Route::get('settings', 'HomeController@showSettings')->name('settings');
@@ -29,7 +29,7 @@ Route::as('simple.')->group(function(){
   Route::post('simple', 'SimpleController@result');
 });
 
-Route::prefix('team')->middleware('auth')->as('team.')->group(function(){
+Route::prefix('team')->middleware('verified')->as('team.')->group(function(){
   Route::get('', 'TeamController@index')->name('index');
   Route::post('', 'TeamController@index');
   Route::post('add', 'TeamController@store')->name('add');
@@ -41,7 +41,7 @@ Route::prefix('boards')->as('boards.')->group(function(){
   Route::get('', 'BoardsController@index')->name('index');
 
   //その他板系（要認証）
-  Route::middleware('auth')->group(function(){
+  Route::middleware('verified')->group(function(){
     Route::get('create', 'BoardsController@showCreateBoardForm')->name('create');
     Route::post('create', 'BoardsController@validateCreateBoard');
     Route::get('confirm', 'BoardsController@showConfirmBoard')->name('confirm');
@@ -56,7 +56,7 @@ Route::prefix('boards')->as('boards.')->group(function(){
     Route::post('members', 'BoardsController@showMembers');
 
     //その他投稿メッセージ系（要認証）
-    Route::middleware('auth')->group(function(){
+    Route::middleware('verified')->group(function(){
       Route::post('', 'BoardsController@validateMessage');
       Route::get('confirm', 'BoardsController@showConfirmMessage')->name('confirm');
       Route::post('confirm', 'BoardsController@storeMessage');
@@ -66,7 +66,7 @@ Route::prefix('boards')->as('boards.')->group(function(){
   });
 
   //joinだけは非公開掲示板でもjoined不要
-  Route::middleware('auth')->prefix('{shown_id}')->as('board.')->group(function(){
+  Route::middleware('verified')->prefix('{shown_id}')->as('board.')->group(function(){
     Route::get('join', 'BoardsController@showConfirmJoin')->name('join');
     Route::post('join', 'BoardsController@join');
   });

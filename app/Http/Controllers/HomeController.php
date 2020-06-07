@@ -46,7 +46,7 @@ class HomeController extends Controller
 
 
     public function showSettings(){
-        $user = Auth::user()->select('notify_posts', 'notify_users', 'notify_messages')->first();
+        $user = Auth::user();
         return view('home.settings', compact( 'user' ));
     }
 
