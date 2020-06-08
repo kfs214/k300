@@ -140,6 +140,23 @@ class User extends Authenticatable implements MustVerifyEmailContract
           return Config::get('view.hidden');
       }
     }
+    
+    
+/*    public function letters(){
+      return $this->hasMany('App\Letter', 'to_user_id', 'id');
+    }*/
+    
+    
+/*    public function from_user(){
+      return $this->hasOneThrough(
+          'App\User',
+          'App\Letter',
+          'to_user_id',
+          'id',
+          'id',
+          'from_user_id'
+      );
+    }*/
 
 
     public function posts(){

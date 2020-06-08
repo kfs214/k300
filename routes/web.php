@@ -71,3 +71,14 @@ Route::prefix('boards')->as('boards.')->group(function(){
     Route::post('join', 'BoardsController@join');
   });
 });
+
+//メッセージ機能
+Route::prefix('letters')->as('letters.')->middleware('verified')->group(function(){
+  Route::get('form/{to_user_id}', 'LettersController@showForm')->name('form');
+  Route::post('form/{to_user_id}', 'LettersController@validate');
+  Route::get('confirm', 'LettersController@confirm')->name('confirm');
+  Route::post('confirm', 'LettersController@post');
+  Route::get('inbox', 'LettersController@inbox')->name('inbox');
+  Route::get('sent', 'LettersController@sent')->name('sent');
+  Route::get('letter/{letter_id}', 'LettersController@showLetter')->name('letter');
+});

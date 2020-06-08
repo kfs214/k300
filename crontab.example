@@ -1,0 +1,2 @@
+0 9 * * * cd /absolute_path_to_project && php74 artisan notify:daily
+0 9 * * 0 cd /absolute_path_to_project && php74 artisan notify:weekly

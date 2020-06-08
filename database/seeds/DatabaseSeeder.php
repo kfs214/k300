@@ -11,7 +11,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+         $this->call([
+           LetterSeeder::class,
+         ]);
 
         //自分のアカウントを作成、パスワードは'password'
         factory(App\User::class)->create(
