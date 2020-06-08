@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Animal;
 use Config;
+use Vinkla\Hashids\Facades\Hashids;
 
 class User extends Authenticatable implements MustVerifyEmailContract
 {
@@ -48,6 +49,11 @@ class User extends Authenticatable implements MustVerifyEmailContract
 
     public function boards(){
         return $this->belongsToMany('App\Board', 'user_board')->withPivot('notify');
+    }
+    
+    
+    public function getLetterLinkAttribute($value){
+      return '<a href="' . route('letters.form', Hashids::encode($this->getKey())) . '" title="このユーザーにメッセージを送る">' . ($this->name_shown ? $this->uname . 'さん' : Config::get('view.hidden')) . '</a>';
     }
 
 

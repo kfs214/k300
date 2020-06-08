@@ -79,15 +79,15 @@ class BoardsController extends Controller
         $join_url = '';
 
         if( !$request->user()->hasVerifiedEmail() ){
-            $mode = 'guest';
+            $user_type = 'guest';
             
         }elseif( $board->users()->where( 'user_id', Auth::id() )->count() ){
-            $mode = 'joined';
+            $user_type = 'joined';
             if( $board->hidden ){
                 $join_url = URL::signedRoute('boards.board.join', ['shown_id' => $board->shown_id]);
             }
         }else{
-            $mode = 'auth';
+            $user_type = 'auth';
         }
 
         $params = ['aname', 't12aname', 't3aname'];
@@ -98,7 +98,7 @@ class BoardsController extends Controller
 
         $posts = $board->posts()->with('user')->paginate(20);
 
-        return view( 'boards.board', compact('members', 'members_count', 'posts', 'board', 'mode', 'join_url') );
+        return view( 'boards.board', compact('members', 'members_count', 'posts', 'board', 'user_type', 'join_url') );
     }
 
 
@@ -161,7 +161,17 @@ class BoardsController extends Controller
       $board = Board::select( 'id', 'name', 'shown_id' )->where( compact('shown_id') )->first();
       $members = $board->users();
       $members_count = $members->count();
-
+      
+      if( !$request->user()->hasVerifiedEmail() ){
+          $user_type = 'guest';
+          
+      }elseif( $board->users()->where( 'user_id', Auth::id() )->count() ){
+          $user_type = 'joined';
+          
+      }else{
+          $user_type = 'auth';
+          
+      }
 
       $animal_groups = AnimalService::animal_groups();
       $grouped_animals = $animal_groups['grouped_animals'];
@@ -174,7 +184,7 @@ class BoardsController extends Controller
 
       $members = $members->where( $filters )->join('animals', 'animals.id', '=', 'users.acode')->orderBy($sort, $direction)->paginate(20);
 
-      $params = ['selected_animals', 'grouped_animals', 'animal_groups', 'board', 'members', 'members_count'];
+      $params = ['selected_animals', 'grouped_animals', 'animal_groups', 'board', 'members', 'members_count', 'user_type'];
 
       return view('boards.members', compact( $params ));
     }

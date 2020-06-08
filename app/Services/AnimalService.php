@@ -59,7 +59,7 @@ class AnimalService{
     if($query == Config::get('view.hidden')){
        return Config::get('view.hidden');
     }else{
-        return '<a href="https://www.google.co.jp/search?q=動物占い+' . $query . '" target="_blank">' . $query . '</a>';
+        return '<a href="https://www.google.co.jp/search?q=動物占い+' . $query . '" target="_blank" title="この結果をGoogleで検索する">' . $query . '</a>';
     }
   }
 

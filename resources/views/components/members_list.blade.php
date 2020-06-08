@@ -103,7 +103,7 @@
             <td>{!! $services->getLink($member->animal->wangel) !!}</td>
             <td>{!! $services->getLink($member->animal->bdebil) !!}</td>
           @else
-            <td>{{ $member->shown_uname }}</td>
+            <td>{!! $user_type == 'joined' ? $member->letter_link : $member->shown_uname !!}</td>
             <td>{{ $member->shown_birthday }}</td>
             <td>{!! $services->getLink($member->aname) !!}</td>
             <td>{!! $services->getLink($member->t12aname) !!}</td>

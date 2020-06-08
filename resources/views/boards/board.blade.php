@@ -3,12 +3,12 @@
 
 @section('content')
   <h1>{{ $board->name }}</h1>
-  @if( $mode == 'joined' )
+  @if( $user_type == 'joined' )
     @if( $board->hidden )
       招待用リンク：<input type="text" value="{{ $join_url }}"><br>
     @endif
     <button onClick="location.href='{{ route('boards.board.leave', ['shown_id' => $board->shown_id]) }}'">退出する</button>
-  @elseif( $mode != 'guest')
+  @elseif( $user_type != 'guest')
       <button onClick="location.href='{{ route('boards.board.join', ['shown_id' => $board->shown_id]) }}'">参加する</button>
   @endif
 
@@ -22,7 +22,7 @@
 
   <h2>投稿一覧</h2>
   @isset( $posts[0] )
-    @if($mode == 'joined')
+    @if($user_type == 'joined')
       <a href="#new_post">書き込む</a>
     @endif
     <table>
@@ -33,7 +33,7 @@
       </tr>
       @foreach( $posts as $post)
         <tr>
-          <td>{{ $post->user->shown_uname }}（{{ $post->user->shown_aname }}）</td>
+          <td>{!! $user_type == 'joined' ? $post->user->letter_link : $post->user->shown_uname !!}（{{ $post->user->shown_aname }}）</td>
           <td>{{ $post->content }}</td>
           <td>{{ $post->created_at }}</td>
         </tr>
@@ -43,7 +43,7 @@
   @else
     まだ投稿がないようです
   @endisset
-  @if( $mode == 'joined' )
+  @if( $user_type == 'joined' )
     <h2 id="new_post">新規投稿</h2>
     <form method="post">
       @csrf
