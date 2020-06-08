@@ -78,7 +78,7 @@ class BoardsController extends Controller
 
         $join_url = '';
 
-        if( !$request->user()->hasVerifiedEmail() ){
+        if( !$request->user() || !$request->user()->hasVerifiedEmail() ){
             $mode = 'guest';
             
         }elseif( $board->users()->where( 'user_id', Auth::id() )->count() ){
