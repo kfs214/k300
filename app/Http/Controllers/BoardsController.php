@@ -78,7 +78,7 @@ class BoardsController extends Controller
 
         $join_url = '';
 
-        if( !$request->user()->hasVerifiedEmail() ){
+        if( !$request->user() || !$request->user()->hasVerifiedEmail() ){
             $user_type = 'guest';
             
         }elseif( $board->users()->where( 'user_id', Auth::id() )->count() ){
@@ -162,7 +162,7 @@ class BoardsController extends Controller
       $members = $board->users();
       $members_count = $members->count();
       
-      if( !$request->user()->hasVerifiedEmail() ){
+      if( !$request->user() || !$request->user()->hasVerifiedEmail() ){
           $user_type = 'guest';
           
       }elseif( $board->users()->where( 'user_id', Auth::id() )->count() ){
