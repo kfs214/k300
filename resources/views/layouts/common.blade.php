@@ -20,6 +20,8 @@
               @auth
                 <li><a href="{{ route('home.mypage') }}">HOME</a></li>
                 <li><a href="{{ route('home.settings') }}">設定</a></li>
+                <li><a href="{{ route('team.index') }}">チーム</a></li>
+                <li><a href="{{ route('letters.inbox') }}">受信箱</a></li>
               @else
                 <li><a href="{{ route('login') }}">LOGIN</a></li>
                 <li><a href="{{ route('register') }}">新規登録</a></li>

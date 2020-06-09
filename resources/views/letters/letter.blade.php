@@ -2,8 +2,15 @@
 @section('title', $letter->from_user->profile . 'からのメッセージ')
 
 @section('content')
-  <h1>{{ $letter->from_user->profile }}からのメッセージ</h1>
+  @if($mode == 'sent')
+    <h1>{{ $letter->to_user->profile }}へのメッセージ</h1>
+  @else
+    <h1>{{ $letter->from_user->profile }}からのメッセージ</h1>
+  @endif
   <p>{{ $letter->content }}</p>
-  <h2>{{ $letter->from_user->profile }}に返信</h2>
-  @include('components.letter_form')
+  
+  @if($mode == 'inbox')
+    <h2>{{ $letter->from_user->profile }}に返信</h2>
+    @include('components.letter_form')
+  @endif
 @endsection

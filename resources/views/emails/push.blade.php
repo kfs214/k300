@@ -13,7 +13,7 @@
   @if( $board )
 [{{ $board->name }}を表示する]({{ $board->url }})　　
   @else
-[受信ボックスを表示する]({{ route('letters.inbox') }})
+[受信ボックスを表示する]({{ route('letters.index') }})
   @endif
 @endcomponent
 [通知設定を変更する]({{ route('home.settings') }})

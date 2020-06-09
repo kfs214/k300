@@ -1,7 +1,4 @@
-@inject('services', 'App\Services\AnimalService')
-
 <div>
-  <h3>以下の条件で絞り込み検索する</h3>
   <form method="POST" action="{{ url()->current() }}">
       @csrf
       <select name="t12aname">

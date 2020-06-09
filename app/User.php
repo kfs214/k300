@@ -53,7 +53,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
     
     
     public function getLetterLinkAttribute($value){
-      return '<a href="' . route('letters.form', Hashids::encode($this->getKey())) . '" title="このユーザーにメッセージを送る">' . ($this->name_shown ? $this->uname . 'さん' : Config::get('view.hidden')) . '</a>';
+      return '<a href="' . route('letters.form', Hashids::encode($this->getKey())) . '" title="このユーザーにメッセージを送る">' . $this->profile . '</a>';
     }
 
 

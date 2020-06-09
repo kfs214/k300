@@ -149,7 +149,7 @@ return [
     'attributes' => [
         'birthday' => '生年月日',
         'board_name' => '掲示板名',
-        'content' => '投稿内容',
+        'content' => '文字数',
         'email' => 'メールアドレス',
         'password' => 'パスワード',
         'password_confirm' => 'パスワード(確認用)',

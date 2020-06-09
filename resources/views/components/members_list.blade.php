@@ -1,3 +1,5 @@
+@inject('services', 'App\Services\AnimalService')
+
 @if( session('status') !== null )
   {{ session('status') }}<br><br>
 @endif
@@ -6,9 +8,11 @@
     <a href="#form">新たにチームメンバーを追加する</a><br>
   @endif
   @unless( $mode == 'board_index' )
+    <h3>以下の条件で絞り込み検索する</h3>
     @include('components.search_by')
     ※並べ替えを有効にすると、その項目を非公開に設定しているユーザーは表示されなくなります。全てのユーザーを再び表示するには、「追加した順に表示」してください。
     追加した順に表示する<a href="{{ url()->current() }}?direction=asc">▲</a><a href="{{ url()->current() }}">▼</a><br>
+    <h3>メンバー一覧</h3>
   @endunless
   @if( $members[0] )
     <table>

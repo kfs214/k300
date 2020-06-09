@@ -74,11 +74,13 @@ Route::prefix('boards')->as('boards.')->group(function(){
 
 //メッセージ機能
 Route::prefix('letters')->as('letters.')->middleware('verified')->group(function(){
-  Route::get('form/{to_user_id}', 'LettersController@showForm')->name('form');
-  Route::post('form/{to_user_id}', 'LettersController@validate');
-  Route::get('confirm', 'LettersController@confirm')->name('confirm');
-  Route::post('confirm', 'LettersController@post');
-  Route::get('inbox', 'LettersController@inbox')->name('inbox');
+  Route::get('', 'LettersController@inbox')->name('inbox');
+  Route::post('', 'LettersController@inbox');
   Route::get('sent', 'LettersController@sent')->name('sent');
-  Route::get('letter/{letter_id}', 'LettersController@showLetter')->name('letter');
+  Route::post('sent', 'LettersController@sent');
+  Route::get('form/{to_user_id}', 'LettersController@showForm')->name('form');
+  Route::post('form/{to_user_id}', 'LettersController@validateLetter');
+  Route::get('confirm', 'LettersController@confirm')->name('confirm');
+  Route::post('confirm', 'LettersController@storeLetter');
+  Route::get('letter/{letter}', 'LettersController@showLetter')->name('letter');
 });

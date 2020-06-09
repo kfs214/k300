@@ -2,6 +2,7 @@
 @section('title', 'チームのメンバー一覧')
 
 @section('content')
+<h1>チームのメンバー一覧</h1>
 @include('components.members_list', ['mode' => 'team'])
 
 <h3>新たにチームメンバーを追加する</h3>

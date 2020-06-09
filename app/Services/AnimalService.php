@@ -1,9 +1,11 @@
 <?php
 namespace App\Services;
 
-use Carbon\Carbon;
 use App\Animal;
+use App\User;
+use Carbon\Carbon;
 use Config;
+use Illuminate\Support\Facades\Auth;
 
 class AnimalService{
   static function acode($birthday){
@@ -64,7 +66,7 @@ class AnimalService{
   }
 
 
-  public static function searchBy($animal_groups, $request, $filters = []){
+  public static function searchBy($animal_groups, $request, $filters = [], $mode = 'members'){
     //初期化系
     $selected_animals = [
       'acode' => '',
@@ -76,9 +78,12 @@ class AnimalService{
         session()->forget('filters');
     }*/
     
+    //絞り込み準備
+    $previous = preg_replace('/\?.*/', '', url()->previous());
 
-    //絞り込み系
-    if( $search_by = $request->search_by ){
+    if( $request->url() != $previous ){
+        session()->forget('filters');
+    }elseif( $search_by = $request->search_by ){
       if( $search_by == 'none' ){
           session()->forget('filters');
 
@@ -108,6 +113,7 @@ class AnimalService{
           }
 
           $selected_animals['t12aname'] = $request->t12aname;
+          
         }
 
       }elseif( session('filters') ){
@@ -115,7 +121,7 @@ class AnimalService{
           $selected_animals = session('selected_animals');
       }
 
-      session(compact('selected_animals'));
+      session()->flash('selected_animals', $selected_animals);
       session()->flash('filters', $filters);
       
       
