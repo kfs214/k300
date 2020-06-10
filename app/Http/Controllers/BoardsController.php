@@ -96,7 +96,7 @@ class BoardsController extends Controller
 
         $members_count = $members->count();
 
-        $posts = $board->posts()->with('user')->paginate(20);
+        $posts = $board->posts()->with('user')->latest()->paginate(20);
 
         return view( 'boards.board', compact('members', 'members_count', 'posts', 'board', 'user_type', 'join_url') );
     }
@@ -234,7 +234,7 @@ class BoardsController extends Controller
           Mail::to($to)->send(new SendNotificationMail($board, $post_index, ''));
         }
 
-        return redirect( route('boards.board.index', compact('shown_id')));
+        return redirect( route('boards.board.index', compact('shown_id')))->with('status', '書き込みました。');
     }
 
 

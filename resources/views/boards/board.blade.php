@@ -33,7 +33,7 @@
       </tr>
       @foreach( $posts as $post)
         <tr>
-          <td>{!! $user_type == 'joined' ? $post->user->letter_link : $post->user->shown_uname !!}（{{ $post->user->shown_aname }}）</td>
+          <td>{!! $user_type == 'joined' ? $post->user->letter_link : $post->user->shown_uname !!}</td>
           <td>{{ $post->content }}</td>
           <td>{{ $post->created_at }}</td>
         </tr>
@@ -45,7 +45,7 @@
   @endisset
   @if( $user_type == 'joined' )
     <h2 id="new_post">新規投稿</h2>
-    <form method="post">
+    <form method="post" action="{{ url()->current() }}">
       @csrf
       <textarea name="content" {{ $errors->has('content') ? 'autofocus' : '' }}>{{ old('content') ?? session('content') ?? ''}}</textarea>
       <button type="submit">書き込む</button>

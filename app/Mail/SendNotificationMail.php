@@ -32,8 +32,14 @@ class SendNotificationMail extends Mailable
      */
     public function build()
     {
+        if($this->post_index){
+          $subject = $this->board->name . 'に書き込みがありました';
+        }elseif($this->user_info){
+          $subject = $this->board->name . 'に新しいユーザーが参加しました';
+        }
+      
         return $this->markdown('emails.push')
-        ->subject('新着通知があります【' . config('app.name') . '】')
+        ->subject($subject . '【' . config('app.name') . '】')
         ->with([
           'board' => $this->board,
           'post_index' => $this->post_index,
