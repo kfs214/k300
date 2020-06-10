@@ -1,5 +1,5 @@
 <?php
-
+//not used
 namespace App\Console\Commands;
 
 use App\Mail\SendPeriodicMail;
@@ -22,7 +22,7 @@ class SendWeeklyNotification extends Command
      *
      * @var string
      */
-    protected $description = 'send notification mail everyweek';
+    protected $description = 'not used. send notification mail everyweek';
 
     /**
      * Create a new command instance.
@@ -41,6 +41,8 @@ class SendWeeklyNotification extends Command
      */
     public function handle()
     {
+      //not used
+/*
       //notify_posts
       $dt = new Carbon('-7 days');
       $dt->minute = 0;
@@ -65,5 +67,6 @@ class SendWeeklyNotification extends Command
       }
 
       return 1;
+*/
     }
 }

@@ -82,5 +82,5 @@ Route::prefix('letters')->as('letters.')->middleware('verified')->group(function
   Route::post('form/{to_user_id}', 'LettersController@validateLetter');
   Route::get('confirm', 'LettersController@confirm')->name('confirm');
   Route::post('confirm', 'LettersController@storeLetter');
-  Route::get('letter/{letter}', 'LettersController@showLetter')->name('letter');
+  Route::get('{letter}', 'LettersController@showLetter')->name('letter');
 });

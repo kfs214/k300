@@ -153,6 +153,10 @@ class LettersController extends Controller
       
         $letter->fill($data)->save();
         
+        if($letter->to_user->notify_messages == 'push'){
+          Mail::to($letter->to_user->email)->send(new PushNotifyForLetter($letter));
+        }
+        
         return redirect(route('letters.sent'))->with('status', '送信しました。');
     }
     

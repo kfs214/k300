@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Mail\SendPeriodicMail;
 use App\User;
+use App\Letter;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Mail;
@@ -15,14 +16,14 @@ class SendDailyNotification extends Command
      *
      * @var string
      */
-    protected $signature = 'notify:daily';
+    protected $signature = 'notify {freq}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'send notification mail everyday';
+    protected $description = 'send notification mail {freq= 周期を指定、everyday or everyweek}';
 
     /**
      * Create a new command instance.
@@ -41,18 +42,33 @@ class SendDailyNotification extends Command
      */
     public function handle()
     {
-        //notify_posts
-        $dt = new Carbon('-1 day');
+        //準備
+        $freq = $this->argument("freq");
+        if($freq == 'everyday'){
+          $dt = new Carbon('-1 day');
+        }else{
+          $dt = new Carbon('-7 days');
+        }
+        
         $dt->minute = 0;
         $dt->second = 0;
-
-        $posts = User::select('users.email', 'boards.name', 'boards.shown_id', 'posts.content')
-        ->where('notify_posts', 'everyday')
+        
+        //notify_posts
+        $posts = User::select('users.email', 'boards.name', 'boards.shown_id', 'posts.content', 'posts.created_at')
+        ->where('notify_posts', $freq)
         ->rightJoin('user_board', 'users.id', '=', 'user_board.user_id')
         ->where('user_board.notify', 1)
         ->rightJoin('boards', 'user_board.board_id', '=', 'boards.id')
         ->rightJoin('posts', 'boards.id', '=', 'posts.board_id')
         ->where('posts.created_at', '>', $dt)
+        ->get()->groupBy('email');
+        
+        //notify_letters
+        $letters = Letter::select('users.email', 'letters.id', 'letters.content', 'letters.from_user_id')
+        ->where('letters.created_at', '>', $dt)
+        ->join('users', 'letters.to_user_id', 'users.id')
+        ->where('notify_posts', $freq)
+        ->orderBy('letters.created_at', 'desc')
         ->get()->groupBy('email');
 
 /*      敗北の記録
@@ -65,14 +81,32 @@ class SendDailyNotification extends Command
 
         dd($new_users);
         */
+        
+        $notifications = [];
+        
+        foreach( $posts as $email => $ones_posts){
+          $notifications[$email]['posts'] = $ones_posts;
+          if($letters->keys()->contains($email)){
+            $notifications[$email]['letters'] = $letters->get($email);
+          }
+        }
+        
+        foreach( $letters->diffKeys($posts) as $email => $ones_letters ){
+          $notifications[$email]['letters'] = $letters->get($email);
+        }
 
-        if(!$posts->count()){
+        if(!$posts->count() && !$letters->count()){
             return 0;
         }
 
-        foreach($posts as $email => $ones_posts){
-            $boards = $ones_posts->groupBy('shown_id');
-            Mail::to($email)->send(new SendPeriodicMail($boards));
+        foreach($notifications as $email => $ones_notifications){
+            $boards = collect($ones_notifications['posts'] ?? '')->groupBy('shown_id');
+            
+            $ones_letters = $ones_notifications['letters'] ?? collect('');
+            
+            $ones_letters_from_count = $ones_letters->groupBy('from_user_id')->count();
+            
+            Mail::to($email)->send(new SendPeriodicMail($boards, $ones_letters, $ones_letters_from_count));
         }
 
         return 1;

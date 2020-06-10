@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
     {
          $this->call([
            LetterSeeder::class,
+           PostSeeder::class,
          ]);
 
         //自分のアカウントを作成、パスワードは'password'
@@ -32,9 +33,6 @@ class DatabaseSeeder extends Seeder
 
         //掲示板を10件作成
         factory(App\Board::class, 10)->create();
-
-        //投稿を100件作成
-        factory(App\Post::class, 100)->create();
 
         $faker = Faker\Factory::create();
         //中間テーブルに情報追加

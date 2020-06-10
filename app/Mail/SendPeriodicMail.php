@@ -17,9 +17,11 @@ class SendPeriodicMail extends Mailable
      *
      * @return void
      */
-    public function __construct($boards)
+    public function __construct($boards, $letters, $letters_from_count)
     {
         $this->boards = $boards;
+        $this->letters = $letters;
+        $this->letters_from_count = $letters_from_count;
     }
 
     /**
@@ -33,6 +35,8 @@ class SendPeriodicMail extends Mailable
       ->subject('今朝までの新着情報をお伝えします【' . config('app.name') . '】')
       ->with([
         'boards' => $this->boards,
+        'letters' => $this->letters,
+        'letters_from_count' => $this->letters_from_count,
       ]);
     }
 }
