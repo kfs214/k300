@@ -53,7 +53,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
     
     
     public function getLetterLinkAttribute($value){
-      return '<a href="' . $this->getLetterUrlAttribute() . '" title="このユーザーにメッセージを送る">' . $this->profile . '</a>';
+      return '<a href="' . $this->getLetterUrlAttribute($value) . '" title="このユーザーにメッセージを送る">' . $this->profile . '</a>';
     }
     
     public function getLetterUrlAttribute($value){
