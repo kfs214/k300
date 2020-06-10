@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>@yield('title')|動物占い—K300</title>
+  <title>@yield('title')|{{ config('app.name') }}</title>
   <!-- <link rel="stylesheet" type="text/css" href="/css/common.css"> -->
   <link href="{{ asset('/links/dist/css/vendor/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ asset('/links/dist/css/flat-ui.min.css') }}" rel="stylesheet">

@@ -12,5 +12,7 @@
   @if($mode == 'inbox')
     <h2>{{ $letter->from_user->profile }}に返信</h2>
     @include('components.letter_form')
+  @else
+    <button type="button" onClick="location.href='{{ url()->previous() }}'">戻る</button>
   @endif
 @endsection

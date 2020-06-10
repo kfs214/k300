@@ -1,2 +1,2 @@
 #!/bin/sh
-/usr/local/bin/php74 artisan notify everyday
+cd /absolute_path_to_project && /absolute_path_to/php artisan notify everyday
