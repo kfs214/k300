@@ -151,6 +151,8 @@ return [
         'board_name' => '掲示板名',
         'content' => '文字数',
         'email' => 'メールアドレス',
+        'name' => 'お名前',
+        'uname' => 'お名前',
         'password' => 'パスワード',
         'password_confirm' => 'パスワード(確認用)',
         'shown_id' => '掲示板ID',

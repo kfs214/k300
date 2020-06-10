@@ -46,7 +46,7 @@ class TeamController extends Controller
 
     public function store(DateRequest $request, TeamMember $team_member){
       $data = $request->validate(
-        ['name' => 'required| string| max:255',
+        ['name' => 'required| string| max:15',
         'birthday' =>'required| date_format:"Y-m-d"',
       ]);
       $acode = AnimalService::acode($data['birthday']);

@@ -50,7 +50,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="comment" class="col-md-4 col-form-label text-md-right">コメント</label>
+                            <label for="comment" class="col-md-4 col-form-label text-md-right">コメント<br>（省略可）</label>
 
                             <div class="col-md-6">
                                 <textarea id="comment" class="row-5 form-control @error('comment') is-invalid @enderror" name="comment" placeholder="ふんどし王子です。余市第1リフトで仕事してます。プログラマーやったり自衛官やったり家事代行やったりしてきました。南樽市場安くて幸せ。" {{ $errors->has('comment') ? 'autofocus' : ''}}>{{ old('comment') }}</textarea>

@@ -15,7 +15,7 @@
           <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
           <div class="col-md-6">
-              <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name">
+              <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" {{ $errors->has('name') ? 'autofocus' : '' }}>
 
               @error('name')
                   <span class="invalid-feedback" role="alert">
@@ -29,7 +29,7 @@
           <label for="birthday" class="col-md-4 col-form-label text-md-right">生年月日</label>
 
           <div class="col-md-6">
-              <input id="bday_year" type="number" class="form-control @error('bday_year') is-invalid @enderror" name="bday_year" value="{{ old('bday_year') }}" required autocomplete="bday" placeholder="1980">年
+              <input id="bday_year" type="number" class="form-control @error('bday_year') is-invalid @enderror" name="bday_year" value="{{ old('bday_year') }}" required autocomplete="bday" placeholder="1980" {{ $errors->has('birthday') ? 'autofocus' : ''}}>年
 
               <input id="bday_month" type="number" class="form-control @error('bday_month') is-invalid @enderror" name="bday_month" value="{{ old('bday_month') }}" required autocomplete="bday" placeholder="2">月
 

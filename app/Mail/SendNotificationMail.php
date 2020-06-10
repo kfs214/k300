@@ -38,7 +38,7 @@ class SendNotificationMail extends Mailable
           'board' => $this->board,
           'post_index' => $this->post_index,
           'user_info' => $this->user_info,
-            'letter' => $this->letter,
+            'letter' => '',
         ]);
     }
 }
