@@ -89,26 +89,36 @@ class AnimalService{
 
       }elseif( $search_by == 'acode' ){
           $filters[] = ['acode', $request->acode,];
-          $filters[] = ['type_shown', 7];
+          if($mode != 'team'){
+            $filters[] = ['type_shown', 7];
+          }
           $selected_animals['acode'] = $request->acode;
 
       }elseif( $search_by == 'groups' ){
           if( $selected_animals['rhythm'] = $request->rhythm ){
               $filters[] = ['rhythm', $request->rhythm];
-              $filters[] = ['type_shown', 7];
+              if($mode != 'team'){
+                $filters[] = ['type_shown', 7];
+              }
           }
 
           if( $animal_groups['t3anames']->contains( $request->t12aname ) ){
              $filters[] = ['t3aname', $request->t12aname,];
-             $filters[] = ['type_shown', '>=', 4];
+             if($mode != 'team'){
+               $filters[] = ['type_shown', '>=', 4];
+             }
 
           }elseif( $animal_groups['t12anames_temp']->pluck('t12aname')->contains( $request->t12aname ) ){
              $filters[] = ['t12aname', $request->t12aname,];
-             $filters[] = ['type_shown', '>=', 6];
+             if($mode != 'team'){
+               $filters[] = ['type_shown', '>=', 6];
+             }
 
           }elseif( $request->t12aname ){
              $filters[] = ['t4code', $request->t12aname,];
-             $filters[] = ['type_shown', '>=', 6];
+             if($mode != 'team'){
+               $filters[] = ['type_shown', '>=', 6];
+             }
 
           }
 
@@ -126,7 +136,7 @@ class AnimalService{
       
       
       //並べ替え有効時、非公開設定のユーザーは表示しない。
-      if( $request->sort ){
+      if( $request->sort && $mode != 'team'){
         switch( $request->sort ){
             case 'uname':
               $filters[] = ['name_shown', 1];

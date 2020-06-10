@@ -28,11 +28,11 @@ class TeamController extends Controller
         $grouped_animals = $animal_groups['grouped_animals'];
         $animal_groups = $animal_groups['animal_groups'];
 
-        $search_by = AnimalService::searchBy($animal_groups, $request, $filters);
+        $search_by = AnimalService::searchBy($animal_groups, $request, $filters, 'team');
 
         $filters = $search_by['filters'];
         $selected_animals = $search_by['selected_animals'];
-
+      
 
         //いよいよ系
         $members = TeamMember::where( $filters )->join('animals', 'animals.id', '=', 'team_members.acode')/*->join('animal_groups', 'animal_groups.t12aname', '=', 'animals.t12aname')*/->orderBy($sort, $direction)->paginate(20);
