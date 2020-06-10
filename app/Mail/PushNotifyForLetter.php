@@ -18,7 +18,7 @@ class PushNotifyForLetter extends Mailable
      */
     public function __construct($letter)
     {
-        $this->letter = $letter
+        $this->letter = $letter;
     }
 
     /**
@@ -29,9 +29,12 @@ class PushNotifyForLetter extends Mailable
     public function build()
     {
       return $this->markdown('emails.push')
-      ->subject($letter->from_user->profile . 'からメッセージが届きました【' . config('app.name') . '】')
+      ->subject($this->letter->from_user->profile . 'からメッセージが届きました【' . config('app.name') . '】')
       ->with([
         'letter' => $this->letter,
+          'board' => '',
+          'post_index' => '',
+          'user_info' => '',
       ]);
     }
 }

@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Letter;
 use App\User;
+use App\Mail\PushNotifyForLetter;
 use App\Services\AnimalService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Mail;
 use Vinkla\Hashids\Facades\Hashids;
 
 class LettersController extends Controller
