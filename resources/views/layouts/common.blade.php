@@ -1,50 +1,40 @@
 <html>
+<!-- code name: Ikkonzome/ #FCD4D5 -->
+{{-- h2 font-size: 1.5em; h3 font-size: 1.17em; --}}
+
 <head>
   <title>@yield('title')|{{ config('app.name') }}</title>
-  <!-- <link rel="stylesheet" type="text/css" href="/css/common.css"> -->
-  <link href="{{ asset('/links/dist/css/vendor/bootstrap.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('/links/dist/css/flat-ui.min.css') }}" rel="stylesheet">
-
+  <link rel="stylesheet" type="text/css" href="{{ asset('/links/common.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('/links/ikkonzome.css') }}">
+  <link rel="icon" href="{{ asset('/links/favicon.ico') }}">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
 
 <body>
+  <div class="header theme flex-container">
+    <a class="title" href="{{ route('welcome') }}">{{ config('app.name') }}</a>
+    <ul class="flex-container">
+      <li><a href="{{ route('boards.index') }}">公開掲示板</a></li>
+      <li><a href="{{ route('simple.form') }}">簡易診断</a></li>
+      @auth
+        <li><a href="{{ route('letters.inbox') }}">受信箱</a></li>
+        <li><a href="{{ route('team.index') }}">チーム</a></li>
+        <li><a href="{{ route('home.mypage') }}">ホーム</a></li>
+        <li><a href="{{ route('home.settings') }}">設定</a></li>
+      @else
+        <li><a href="{{ route('login') }}">ログイン</a></li>
+        <li><a href="{{ route('register') }}">新規登録</a></li>
+      @endauth
+    </ul>
+  </div>
   <div class="container">
-    <!-- navigation -->
-    <div class="row demo-row">
-      <div class="col">
-        <nav class="navbar navbar-inverse navbar-embossed navbar-expand-lg" role="navigation">
-            <a class="navbar-brand" href="{{ url('/') }}">{{ config('app.name') }}</a>
-            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-01"></button>
-            <div class="collapse navbar-collapse" id="navbar-collapse-01">
-            <ul class="nav navbar-nav mr-auto">
-              @auth
-                <li><a href="{{ route('home.mypage') }}">HOME</a></li>
-                <li><a href="{{ route('home.settings') }}">設定</a></li>
-                <li><a href="{{ route('team.index') }}">チーム</a></li>
-                <li><a href="{{ route('letters.inbox') }}">受信箱</a></li>
-              @else
-                <li><a href="{{ route('login') }}">LOGIN</a></li>
-                <li><a href="{{ route('register') }}">新規登録</a></li>
-              @endauth
-                <li><a href="{{ route('boards.index') }}">公開掲示板</a></li>
-                <li><a href="{{ route('simple.form') }}">簡易診断</a></li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
-        </nav><!-- /navbar -->
-      </div>
-    </div>
-    <!-- end navigation -->
     @yield('content')
   </div>
-  <!-- end container -->
-
-  <!-- script -->
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-  <!-- Bootstrap 4 requires Popper.js -->
-  <script src="https://unpkg.com/popper.js@1.14.1/dist/umd/popper.min.js" crossorigin="anonymous"></script>
-  <script src="http://vjs.zencdn.net/6.6.3/video.js"></script>
-  <script src="{{ asset('/links/dist/js/flat-ui.min.js') }}"></script>
-  <script src="{{ asset('/links/docs/assets/js/application.js') }}"></script>
-  <script src="{{ asset('/links/js/script.js') }}"></script>
+  <div class="footer">
+    <div class="container">
+      <p>
+        ご利用に際し発生した一切の責任を開発者は負いかねますが、お気付きの点がありましたらお知らせください。<a href="https://kfs214.net/articles/425#006" target="_blank">kfs214</a>
+      </p>
+    </div>
+  </div>
 </body>
-</html>

@@ -1,0 +1,72 @@
+html {
+  font-size: 13pt;
+}
+
+body {
+  margin: 0;
+}
+
+input{
+    font-size: 1em;
+    width: 98%;
+    max-width: 160px;
+}
+
+button{
+    font-size: 1em;
+}
+
+.container {
+  margin: 0 auto;
+  width: 98%;
+}
+
+.content {
+  margin: 0 auto 20pt auto;
+  width: 100%;
+}
+
+.header,.footer{
+  width: 96%;
+  font-size: 0.8em;
+  padding: 2%;
+}
+
+.title{
+  font-size: 1.5em;
+  display: inline-block;
+}
+
+.header{
+  margin-bottom: 20pt;
+}
+
+.footer{
+  margin-top: 40pt;
+}
+
+.flex-container{
+  display: flex;
+  vertical-align:middle;
+  flex-wrap:wrap;
+}
+
+.header ul{
+  margin: 0;
+  padding: 0;
+}
+
+.header li{
+  text-align:center;
+  border-left:1px solid white;
+  padding: 0.3em;
+}
+
+.header li, .header a{
+  list-style: none;
+  text-decoration: none;
+}
+
+.header ul{
+  justify-content: flex-end;
+}

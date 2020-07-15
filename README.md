@@ -1,4 +1,4 @@
-#cloneしたときに行うこと
+# cloneしたときに行うこと
 * init_animals_tableのコピー
 * php artisan salt:generate  
 hashidsを使うためのsaltが.envファイルに書き込まれます。
