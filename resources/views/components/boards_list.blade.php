@@ -3,7 +3,7 @@
     <form method="POST">
       @csrf
   @endif
-  <table>
+  <div class="scroll-table"><table>
     <tr>
       @if( $mode == 'home' )
         <th>通知ON</th>
@@ -25,7 +25,7 @@
         <td>{{ $board->latest_post->created_at ?? '' }}</td>
       </tr>
     @endforeach
-  </table>
+  </table></div>
   @if( $mode == 'home' )
     <button type="submit">個別通知設定を更新</button>
   @endif

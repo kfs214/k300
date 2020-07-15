@@ -5,7 +5,7 @@
   <h1>掲示板を新規作成します</h1>
   <form method="POST">
     @csrf
-    <table>
+    <div class="scroll-table"><table>
       <tr>
         <th class="nowrap">掲示板名</th>
         <td>
@@ -24,7 +24,7 @@
           @enderror
         </td>
       </tr>
-    </table>
+    </table></div>
     @php
       $checked = '';
       if( old('hidden') ){

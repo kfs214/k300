@@ -25,7 +25,7 @@
 
     @if( $letters->first() )
     <h3>メッセージ一覧</h3>
-    <table>
+    <div class="scroll-table"><table>
       <tr>
         <th>{{ $mode == 'sent' ? '宛先' : '送信者' }}</th>
         <th>{!! $services->sortLinkGen('内容', 'content') !!}</th>
@@ -38,7 +38,7 @@
           <td>{{ $letter->created_at }}</td>
         </tr>
       @endforeach
-    </table>
+    </table></div>
     {{ $letters->appends(request()->query())->links() }}
     @else
       該当するメッセージはないようです。<br>

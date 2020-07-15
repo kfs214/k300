@@ -15,7 +15,7 @@
     <h3>メンバー一覧</h3>
   @endunless
   @if( $members[0] )
-      <table>
+      <div class="scroll-table"><table>
         <tr>
           @if( $mode == 'board_index' )
             <th class="nowrap">お名前</th>
@@ -66,7 +66,7 @@
             @endif
           </tr>
         @endforeach
-      </table>
+      </table></div>
     @else
       該当するメンバーはいないようです。<br>
     @endif

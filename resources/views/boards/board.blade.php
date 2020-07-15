@@ -25,7 +25,7 @@
     @if($user_type == 'joined')
       <a href="#new_post">書き込む</a>
     @endif
-    <table>
+    <div class="scroll-table"><table>
       <tr>
         <th>投稿者</th>
         <th >内容</th>
@@ -38,7 +38,7 @@
           <td class>{{ $post->created_at }}</td>
         </tr>
       @endforeach
-    </table>
+    </table></div>
     {{ $posts->appends(request()->query())->links() }}
   @else
     まだ投稿がないようです

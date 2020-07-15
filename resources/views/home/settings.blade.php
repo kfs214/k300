@@ -5,7 +5,7 @@
   <h2>通知設定</h2>
   <form method="POST">
     @csrf
-    <table>
+    <div class="scroll-table"><table>
       <tr>
         <th>参加中の掲示板への新しい書き込み</th>
         <td><select name="notify_posts">
@@ -30,7 +30,7 @@
           <option value="disabled" {{ $user->notify_messages == 'disabled' ? 'selected' : ''}}>通知しない</option>
         </td>
       </tr>
-    </table>
+    </table></div>
 
     <div class="row"></div>
     <button type="submit">通知設定を更新する</button>
