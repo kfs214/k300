@@ -17,10 +17,10 @@ class DateRequest extends FormRequest
     }
 
     protected function prepareForValidation(){
-            if ($this->bday_month < 10) {
+            if (strlen($this->bday_month) < 2) {
                 $this->bday_month = 0 . $this->bday_month;
             }
-            if ($this->bday_day < 10) {
+            if (strlen($this->bday_day) < 2) {
                 $this->bday_day = 0 . $this->bday_day;
             }
 

@@ -50,12 +50,12 @@ class User extends Authenticatable implements MustVerifyEmailContract
     public function boards(){
         return $this->belongsToMany('App\Board', 'user_board')->withPivot('notify');
     }
-    
-    
+
+
     public function getLetterLinkAttribute($value){
-      return '<a href="' . $this->getLetterUrlAttribute($value) . '" title="このユーザーにメッセージを送る">' . $this->profile . '</a>';
+      return '<a href="' . $this->getLetterUrlAttribute($value) . '" title="このユーザーにメッセージを送る">' . $this->profileLines . '</a>';
     }
-    
+
     public function getLetterUrlAttribute($value){
       return route('letters.form', Hashids::encode($this->getKey()));
     }
@@ -80,8 +80,8 @@ class User extends Authenticatable implements MustVerifyEmailContract
           return Config::get('view.hidden_aname');
       }
     }
-    
-    
+
+
     public function getShownBirthdayAttribute($value){
         return $this->birthday_shown ? $this->birthday : Config::get('view.hidden');
     }
@@ -95,6 +95,17 @@ class User extends Authenticatable implements MustVerifyEmailContract
       }
 
       return $shown_uname . '（' . $this->shown_aname . '）';
+    }
+
+
+    public function getProfileLinesAttribute($value){
+      if($this->name_shown){
+          $shown_uname = $this->uname . 'さん';
+      }else{
+          $shown_uname = Config::get('view.hidden');
+      }
+
+      return $shown_uname . '<br>（' . $this->shown_aname . '）';
     }
 
 
@@ -150,13 +161,13 @@ class User extends Authenticatable implements MustVerifyEmailContract
           return Config::get('view.hidden');
       }
     }
-    
-    
+
+
     public function letters(){
       return $this->hasMany('App\Letter', 'to_user_id', 'id');
     }
-    
-    
+
+
 /*    public function from_user(){
       return $this->hasOneThrough(
           'App\User',

@@ -3,17 +3,14 @@
     <form method="POST">
       @csrf
   @endif
-  @if( session('status') )
-    {{ session('status') }}
-  @endif
   <table>
     <tr>
       @if( $mode == 'home' )
         <th>通知ON</th>
       @endif
-      <th>掲示板名</th>
-      <th>最新の投稿</th>
-      <th>更新日時</th>
+      <th class="nowrap">掲示板名</th>
+      <th class="nowrap">最新の投稿</th>
+      <th class="nowrap">更新日時</th>
     </tr>
     @foreach( $boards as $board )
       <tr>
@@ -23,7 +20,7 @@
             <input type="checkbox" name="notify[{{ $board->id }}]" value="1" {{ $board->pivot->notify ? 'checked="checked"' : '' }}>
           </td>
         @endif
-        <td><a href="{{ route('boards.board.index', ['shown_id' => $board->shown_id]) }}">{{ $board->name }}</a></td>
+        <td class="nowrap"><a href="{{ route('boards.board.index', ['shown_id' => $board->shown_id]) }}">{{ $board->name }}</a></td>
         <td>{{ Str::limit($board->latest_post->content ?? 'まだ投稿が存在しないようです。' , 40, '...') }}</td>
         <td>{{ $board->latest_post->created_at ?? '' }}</td>
       </tr>

@@ -19,7 +19,7 @@
     <p>{{ config('app.name') }}はメール通知に対応しています。通知を随時受け取ることも、1週間分をまとめて受け取ることも、思いのまま。設定画面からお好みの選択肢をお選びください。</p>
     <h1>さあ、ご一緒に。</h1>
     @auth
-      <a href="{{ route('home.mypage') }}">HOME</a>
+      <a href="{{ route('home.mypage') }}">ホームへ</a>
     @endauth
     @guest
       <a href="{{ route('register') }}">会員登録する</a>

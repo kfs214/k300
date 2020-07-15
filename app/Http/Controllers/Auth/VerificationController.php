@@ -57,6 +57,6 @@ class VerificationController extends Controller
            event(new Verified($request->user()));
        }
 
-       return redirect(route('home.settings'));
+       return redirect(route('home.mypage'));
    }
 }

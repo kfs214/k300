@@ -2,10 +2,7 @@
 @section('title', '通知設定')
 
 @section('content')
-  <h1>通知設定</h1>
-  @if( session('status') )
-    {{ session('status') }}
-  @endisset
+  <h2>通知設定</h2>
   <form method="POST">
     @csrf
     <table>
@@ -34,6 +31,8 @@
         </td>
       </tr>
     </table>
+
+    <div class="row"></div>
     <button type="submit">通知設定を更新する</button>
   </form>
 @endsection

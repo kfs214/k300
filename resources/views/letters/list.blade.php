@@ -3,7 +3,6 @@
 @inject('services', 'App\Services\AnimalService')
 
 @section('content')
-  {{ session('status') }}
   <h1>{{ $mode == 'sent' ? '送' : '受' }}信箱</h1>
   @if( $letters_count )
     <h3>{{ $mode == 'sent' ? '宛先' : '送信者' }}で絞り込み検索する</h3>
@@ -22,8 +21,8 @@
           絞り込みを解除する
         </button><br>
     </form>
-    
-    
+
+
     @if( $letters->first() )
     <h3>メッセージ一覧</h3>
     <table>
@@ -47,7 +46,7 @@
   @else
     まだメッセージがないようです。
   @endif
-  
+
   <h3>{{ $mode == 'sent' ? '受' : '送' }}信箱を表示する</h3>
   <a href="{{ route($mode == 'sent' ? 'letters.inbox' : 'letters.sent') }}">{{ $mode == 'sent' ? '受' : '送' }}信箱</a>
 @endsection

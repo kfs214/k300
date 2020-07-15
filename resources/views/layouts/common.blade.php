@@ -14,16 +14,16 @@
   <div class="header theme flex-container">
     <a class="title" href="{{ route('welcome') }}">{{ config('app.name') }}</a>
     <ul class="flex-container">
-      <li><a href="{{ route('boards.index') }}">公開掲示板</a></li>
-      <li><a href="{{ route('simple.form') }}">簡易診断</a></li>
+      <a href="{{ route('boards.index') }}"><li>公開掲示板</li></a>
+      <a href="{{ route('simple.form') }}"><li>簡易診断</li></a>
       @auth
-        <li><a href="{{ route('letters.inbox') }}">受信箱</a></li>
-        <li><a href="{{ route('team.index') }}">チーム</a></li>
-        <li><a href="{{ route('home.mypage') }}">ホーム</a></li>
-        <li><a href="{{ route('home.settings') }}">設定</a></li>
+        <a href="{{ route('letters.inbox') }}"><li>受信箱</li></a>
+        <a href="{{ route('team.index') }}"><li>チーム</li></a>
+        <a href="{{ route('home.mypage') }}"><li>ホーム</li></a>
+        <a href="{{ route('home.settings') }}"><li>設定</li></a>
       @else
-        <li><a href="{{ route('login') }}">ログイン</a></li>
-        <li><a href="{{ route('register') }}">新規登録</a></li>
+        <a href="{{ route('login') }}"><li>ログイン</li></a>
+        <a href="{{ route('register') }}"><li>新規登録</li></a>
       @endauth
     </ul>
   </div>
@@ -37,4 +37,10 @@
       </p>
     </div>
   </div>
+
+  @if(session('status'))
+    <script>
+        alert('{{session('status')}}');
+    </script>
+  @endif
 </body>
