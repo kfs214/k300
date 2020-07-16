@@ -9,7 +9,7 @@
       <tr>
         <th class="nowrap">掲示板名</th>
         <td>
-          <input name="board_name" type="text" placeholder="カウカウ・リゾートの人たち" value="{{ old('board_name', session('board_name')) }}">
+          <input name="board_name" type="text" placeholder="カウカウ・リゾートの人たち" value="{{ old('board_name', session('board_name')) }}" {{ $errors->has('board_name') ? 'autofocus' : '' }}>
           @error ('board_name')
               <br><span class="invalid-feedback">{{ $message }}</span>
           @enderror
@@ -18,7 +18,7 @@
       <tr>
         <th class="nowrap">掲示板ID</th>
         <td>
-          <input name="shown_id" type="text" placeholder="cowcow214" value="{{ old('shown_id', session('shown_id')) }}">
+          <input name="shown_id" type="text" placeholder="cowcow214" value="{{ old('shown_id', session('shown_id')) }}" {{ $errors->has('shown_id') ? 'autofocus' : '' }}>
           @error ('shown_id')
               <br><span class="invalid-feedback">{{ $message }}</span>
           @enderror

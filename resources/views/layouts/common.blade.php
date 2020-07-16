@@ -43,4 +43,9 @@
         alert('{{session('status')}}');
     </script>
   @endif
+  @if($errors->any())
+    <script>
+        alert('入力に誤りがあります');
+    </script>
+  @endif
 </body>

@@ -1,5 +1,6 @@
 html {
   font-size: 13pt;
+  font-family: 'Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3','Yu Gothic UI',sans-serif;
 }
 
 body {
@@ -14,6 +15,10 @@ input{
 
 button{
     font-size: 1em;
+}
+
+p, td{
+  font-family: 'klee','Times New Roman','ヒラギノ明朝 ProN','Hiragino Mincho ProN','Meiryo UI',serif;
 }
 
 .container {
