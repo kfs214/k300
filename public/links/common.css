@@ -21,6 +21,13 @@ p, td{
   font-family: 'klee','Times New Roman','ヒラギノ明朝 ProN','Hiragino Mincho ProN','Meiryo UI',serif;
 }
 
+a, a:hover, button, button:hover, li, li:hover{
+  -webkit-transition: 0.3s ease-out;
+  -moz-transition: 0.3s ease-out;
+  -o-transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
+}
+
 .container {
   margin: 0 auto;
   width: 98%;

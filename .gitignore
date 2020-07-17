@@ -14,6 +14,5 @@ Homestead.yaml
 lab.log
 npm-debug.log
 yarn-error.log
-later.txt
 *.icloud
 *0.blade.php
