@@ -21,6 +21,13 @@ p, td{
   font-family: 'klee','Times New Roman','ヒラギノ明朝 ProN','Hiragino Mincho ProN','Meiryo UI',serif;
 }
 
+a, a:hover, button, button:hover, li, li:hover{
+  -webkit-transition: 0.3s ease-out;
+  -moz-transition: 0.3s ease-out;
+  -o-transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
+}
+
 .container {
   margin: 0 auto;
   width: 98%;
@@ -31,15 +38,15 @@ p, td{
   width: 100%;
 }
 
-.header,.footer{
-  width: 96%;
+.header, .footer{
+  width: 98%;
   font-size: 0.8em;
-  padding: 2%;
+  padding: 1%;
 }
 
 .title{
   font-size: 1.5em;
-  padding: 0.3em;
+  padding: 0.3em 0.3em 0.3em 0;
   display: inline-block;
 }
 

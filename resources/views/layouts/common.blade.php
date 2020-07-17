@@ -31,11 +31,9 @@
     @yield('content')
   </div>
   <div class="footer">
-    <div class="container">
-      <p>
-        ご利用に際し発生した一切の責任を開発者は負いかねますが、お気付きの点がありましたらお知らせください。<a href="https://kfs214.net/articles/425#006" target="_blank">kfs214</a>
-      </p>
-    </div>
+    <p>
+      ご利用に際し発生した一切の責任を開発者は負いかねますが、お気付きの点がありましたらお知らせください。<a href="https://kfs214.net/articles/425#006" target="_blank">kfs214</a>
+    </p>
   </div>
 
   @if(session('status'))
