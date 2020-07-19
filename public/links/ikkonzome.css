@@ -36,8 +36,8 @@ textarea{
   height: 5em;
 }
 
-select{
-  width: 100%;
+input, select{
+  border: solid 1px gray;
 }
 
 .scroll-table{
@@ -80,4 +80,26 @@ table tr:nth-child(odd) td, .page-item:hover, .disabled, .active, .pagination, .
 
 .page-link{
   text-decoration: none;
+}
+
+.search-by-value, .search-by-row{
+  display: flex;
+}
+
+.search-by-row{
+  flex-wrap: wrap;
+}
+
+.search-by-value{
+  width: 260px;
+}
+
+.search-by-value select{
+  max-width: none;
+  width: 100%;
+  margin-right: 5px;
+}
+
+.search-by-value button{
+  width: 160px;
 }
