@@ -21,7 +21,7 @@
           </td>
         @endif
         <td class="nowrap"><a href="{{ route('boards.board.index', ['shown_id' => $board->shown_id]) }}">{{ $board->name }}</a></td>
-        <td>{{ Str::limit($board->latest_post->content ?? 'まだ投稿が存在しないようです。' , 40, '...') }}</td>
+        <td>{{ Str::limit(e($board->latest_post->content) ?? 'まだ投稿が存在しないようです。' , 40, '...') }}</td>
         <td>{{ $board->latest_post->created_at ?? '' }}</td>
       </tr>
     @endforeach

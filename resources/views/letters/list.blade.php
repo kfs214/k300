@@ -34,7 +34,7 @@
       @foreach( $letters as $letter )
         <tr>
           <th>{!! $mode == 'sent' ? $letter->to_user->letter_link : $letter->from_user->letter_link !!}</th>
-          <td>{!! Str::limit($letter->content, 100, '<a href="' . route('letters.letter', $letter) . '">...続きを表示する</a>') !!}</td>
+          <td>{!! Str::limit(e($letter->content), 100, '<a href="' . route('letters.letter', $letter) . '">...続きを表示する</a>') !!}</td>
           <td>{{ $letter->created_at }}</td>
         </tr>
       @endforeach

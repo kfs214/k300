@@ -19,13 +19,12 @@ select {
 }
 
 input, select{
-    font-size: 1em;
     width: 96%;
     max-width: 160px;
     border-radius: 5px;
 }
 
-button{
+textarea, button, input, select{
     font-size: 1em;
 }
 

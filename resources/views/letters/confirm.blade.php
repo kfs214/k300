@@ -5,7 +5,7 @@
   <h1>{{ session('profile') }}にメッセージを送信します。</h1>
   <h2>送信内容</h2>
   <p>
-    {{ session('content') }}
+    {!! nl2br(e(session('content'))) !!}
   </p>
   <form method="POST" action="{{route('letters.confirm')}}">
     @csrf

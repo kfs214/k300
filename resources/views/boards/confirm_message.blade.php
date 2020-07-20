@@ -5,7 +5,7 @@
   <h1>{{ $board->name }}に書き込みます。</h1>
   <h2>投稿内容</h2>
   <p>
-    {{ session('content') }}
+    {!! nl2br(e(session('content'))) !!}
   </p>
   <form method="POST">
     @csrf

@@ -24,4 +24,16 @@ class Post extends Model
           'id'
         );
     }
+
+    //\nを<br>にして投稿取得
+    public function getContentAttribte($value){
+        $value = htmlspecialchars($value);
+        dd($value);
+        $order   = array("\r\n", "\n", "\r");
+        $replace = '<br>';
+
+        $value = str_replace($order, $replace, $value);
+
+        return $value;
+    }
 }

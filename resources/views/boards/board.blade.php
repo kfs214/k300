@@ -33,9 +33,9 @@
       </tr>
       @foreach( $posts as $post)
         <tr>
-          <td class>{!! $user_type == 'joined' ? $post->user->letter_link : $post->user->shown_uname !!}</td>
-          <td class>{{ $post->content }}</td>
-          <td class>{{ $post->created_at }}</td>
+          <td>{!! $user_type == 'joined' ? $post->user->letter_link : $post->user->shown_uname !!}</td>
+          <td>{!! nl2br(e($post->content)) !!}</td>
+          <td>{{ $post->created_at }}</td>
         </tr>
       @endforeach
     </table></div>
