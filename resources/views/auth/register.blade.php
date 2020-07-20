@@ -4,6 +4,11 @@
 @section('content')
   <div class="content">
     <h2>{{ __('Register') }}</h2>
+
+    <div class="row scroll-img">
+      <h3>設定した各項目の表示例</h3>
+      <img src="{{ asset('/links/hidden-example.png') }}">
+    </div>
     <form method="POST" action="{{ route('register') }}">
     @csrf
 

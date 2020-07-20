@@ -40,11 +40,18 @@ input, select{
   border: solid 1px gray;
 }
 
-.scroll-table{
-  display: block;
+.scroll-table, .scroll-img{
   overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
+}
+
+.scroll-table{
+  display: block;
   table-layout: fixed;
+}
+
+.scroll-img img{
+  height: 300px;
 }
 
 .nowrap{

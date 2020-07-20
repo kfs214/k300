@@ -27,6 +27,7 @@ $factory->define(User::class, function (Faker $faker) {
         'acode' => $faker->numberBetween(1, 60),
         'name_shown' => $faker->boolean,
         'type_shown' => $faker->randomElement([7, 6, 4, 0]),
+        'birthday_shown' => $faker->boolean,
         'comment' => $faker->realText(100),
         'remember_token' => Str::random(10),
         'notify_posts' => $faker->randomElement(['push', 'everyday', 'everyweek', 'disabled']),
