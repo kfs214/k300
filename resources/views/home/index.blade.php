@@ -3,6 +3,12 @@
 @section('title', $title)
 
 @section('content')
+@if(session('aimed.url'))
+  <div class="content">
+      <h2>作業中のページ</h2>
+      <a href="{{ session('aimed.url') }}">{{ session('aimed.url') }}</a>
+  </div>
+@endif
 
 <div class="content">
   <h2>診断結果</h2>
@@ -41,6 +47,7 @@
     <div><!-- 新着メッセージ一覧 --></div>
     <div>
       <h2 id="boards">参加中の掲示板一覧</h2>
+      <div class="row"><a href="{{ route('boards.create') }}">掲示板を新規作成する</a></div>
       @include('components.boards_list', ['mode' => 'home'])
     </div>
   @endisset

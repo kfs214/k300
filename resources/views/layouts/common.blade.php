@@ -14,19 +14,23 @@
   <div class="header theme flex-container">
     <a class="title" href="{{ route('welcome') }}">{{ config('app.name') }}</a>
     <ul class="flex-container">
+      @auth
+        <a href="{{ route('home.mypage') }}"><li>ホーム</li></a>
+        <a href="{{ route('team.index') }}"><li>チーム</li></a>
+        <a href="{{ route('letters.inbox') }}"><li>受信箱</li></a>
+      @endauth
       <a href="{{ route('boards.index') }}"><li>公開掲示板</li></a>
       <a href="{{ route('simple.form') }}"><li>簡易診断</li></a>
       @auth
-        <a href="{{ route('letters.inbox') }}"><li>受信箱</li></a>
-        <a href="{{ route('team.index') }}"><li>チーム</li></a>
-        <a href="{{ route('home.mypage') }}"><li>ホーム</li></a>
         <a href="{{ route('home.settings') }}"><li>設定</li></a>
+        <a href="{{ route('logout') }}"><li>ログアウト</li></a>
       @else
         <a href="{{ route('login') }}"><li>ログイン</li></a>
         <a href="{{ route('register') }}"><li>新規登録</li></a>
       @endauth
     </ul>
   </div>
+
   <div class="container">
     @yield('content')
   </div>

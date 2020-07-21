@@ -51,14 +51,16 @@ class BoardsController extends Controller
         $shown_uname = Auth::user()->shown_uname == Config::get('view.hidden') ? Config::get('view.hidden_uname') : Auth::user()->shown_uname . 'さん';
 
         $user_info = $shown_uname . '（' . Auth::user()->shown_aname . '）';
-        
+
         foreach( $to_emails as $to ){
             Mail::to($to)->send(new SendNotificationMail($board, '', $user_info));
         }
-        
+
 
         //join
         $board->users()->attach( Auth::id() );
+
+        session()->forget('aimed.url');
 
         return redirect( route('boards.board.index', compact('shown_id')) )->with( 'status', '参加しました' );
     }
@@ -80,7 +82,7 @@ class BoardsController extends Controller
 
         if( !$request->user() || !$request->user()->hasVerifiedEmail() ){
             $user_type = 'guest';
-            
+
         }elseif( $board->users()->where( 'user_id', Auth::id() )->count() ){
             $user_type = 'joined';
             if( $board->hidden ){
@@ -161,16 +163,16 @@ class BoardsController extends Controller
       $board = Board::select( 'id', 'name', 'shown_id' )->where( compact('shown_id') )->first();
       $members = $board->users();
       $members_count = $members->count();
-      
+
       if( !$request->user() || !$request->user()->hasVerifiedEmail() ){
           $user_type = 'guest';
-          
+
       }elseif( $board->users()->where( 'user_id', Auth::id() )->count() ){
           $user_type = 'joined';
-          
+
       }else{
           $user_type = 'auth';
-          
+
       }
 
       $animal_groups = AnimalService::animal_groups();
@@ -229,7 +231,7 @@ class BoardsController extends Controller
         $to_emails = $board->users()->where($filters)->get();
 
         $post_index = Str::limit($data['content'], 40, '...');
-        
+
         foreach( $to_emails as $to ){
           Mail::to($to)->send(new SendNotificationMail($board, $post_index, ''));
         }

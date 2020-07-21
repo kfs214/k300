@@ -37,4 +37,9 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function redirectPath(){
+      return session('aimed.url', $this->redirectTo);
+    }
+
 }

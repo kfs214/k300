@@ -24,7 +24,7 @@ class HiddenBoardMiddleware
         if( $board->hidden ){
           $members = $board->users()->pluck('id');
           if( !$members->contains( Auth::id() ) ){
-             abort(403);
+             return redirect(route('home.mypage', 303))->with('status', 'エラーが発生しました');
           }
         }
 

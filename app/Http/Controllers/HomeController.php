@@ -41,7 +41,14 @@ class HomeController extends Controller
 
         session( ['redirect_to' => route( 'home.mypage' )] );
 
-        return view('home.index', compact('user', 'animal', 'boards', 'title',));
+        return view('home.index', compact('user', 'animal', 'boards', 'title'));
+    }
+
+
+    public function logout(){
+        Auth::logout();
+        session()->forget('aimed.url');
+        return redirect(route('welcome'), 303)->with('status', 'ログアウトしました');
     }
 
 
@@ -61,7 +68,7 @@ class HomeController extends Controller
             ->update( compact('notify') );
         }
 
-        return redirect(route( 'home.mypage' ))->with('status', '更新が完了しました');
+        return redirect(route( 'home.mypage' ), 303)->with('status', '更新が完了しました');
     }
 
 
@@ -76,6 +83,6 @@ class HomeController extends Controller
         $user = Auth::user();
         $user->fill($data)->save();
 
-        return redirect(route( 'home.settings' ))->with('status', '更新が完了しました');
+        return redirect(route( 'home.settings' ), 303)->with('status', '更新が完了しました');
     }
 }
