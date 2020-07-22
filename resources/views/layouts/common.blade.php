@@ -32,6 +32,19 @@
   </div>
 
   <div class="container">
+    @if(session('browser_recommend'))
+      <script>
+          alert('推奨ブラウザではありません');
+      </script>
+      <div class="content">
+          <h2>推奨ブラウザではありません</h2>
+          <p>推奨ブラウザはSafari, Google Chromeです。</p>
+          <h3>推奨ブラウザで開く</h3>
+          <input type="text" value="{{session('browser_recommend')}}">
+          <p>このURLをコピーして、ブラウザに貼り付けてください。</p>
+      </div>
+    @endif
+
     @yield('content')
   </div>
   <div class="footer">

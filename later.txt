@@ -12,8 +12,3 @@ Ver.5
   commentの全文が出る場所
   文字数バリデーション、「現在何文字」
   Markdownに対応？
-
-  現状の問題点：Messengerで非公開掲示板に参加しようとした際に、Messenger内で開いてしまう。
-    o-1:DBにjoining保存、Safariでverify完了してもjoin可能。
-    o-2:messsenger ならすいしょうぶらうざサファリですっていう
-    o-3:messenger ならsafariで開かせる
