@@ -17,7 +17,7 @@ class RecommendedWebBrowser
     {
         $ua = $request->header('User-Agent');
 
-        $deprecated = '/(messenger|fbav|FBAN|FBIOS)/i';
+        $deprecated = '/(messenger|fbav|FBAN|FBIOS|line)/i';
 
         if(preg_match($deprecated, $ua)){
             session(['browser_recommend' => url()->full()]);
