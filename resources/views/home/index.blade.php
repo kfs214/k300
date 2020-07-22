@@ -3,13 +3,6 @@
 @section('title', $title)
 
 @section('content')
-@if(session('aimed.url'))
-  <div class="content">
-      <h2>作業中のページ</h2>
-      <a href="{{ session('aimed.url') }}">{{ session('aimed.url') }}</a>
-  </div>
-@endif
-
 <div class="content">
   <h2>診断結果</h2>
   <p>{{$user->birthday ?? $birthday}}

@@ -16,7 +16,7 @@ class EnsureEmailIsVerified extends Middleware
      */
     public function __construct()
     {
-        if(strpos(url()->current(), 'join') !== FALSE && !session()->has('aimed.url')){
+        if(!session()->has('aimed.url')){
           session(['aimed.url' => url()->full()]);
         }
     }
