@@ -22,7 +22,7 @@
       <a href="{{ route('home.mypage') }}">ホームへ</a>
     @endauth
     @guest
-      <a href="{{ route('register') }}">会員登録する</a>
+      <a href="{{ route('register', ['openexternalbrowser' => 1]) }}">会員登録する</a>
     @endguest
 </div>
 

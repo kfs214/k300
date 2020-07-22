@@ -37,6 +37,10 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+
+        if(!session()->has('aimed.url')){
+          session(['aimed.url' => url()->previous()]);
+        }
     }
 
     protected function sendLoginResponse(Request $request)

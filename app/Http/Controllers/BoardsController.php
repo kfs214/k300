@@ -86,7 +86,7 @@ class BoardsController extends Controller
         }elseif( $board->users()->where( 'user_id', Auth::id() )->count() ){
             $user_type = 'joined';
             if( $board->hidden ){
-                $join_url = URL::signedRoute('boards.board.join', ['shown_id' => $board->shown_id]);
+                $join_url = URL::signedRoute('boards.board.join', ['shown_id' => $board->shown_id, 'openexternalbrowser' => 1]);
             }
         }else{
             $user_type = 'auth';
@@ -116,7 +116,7 @@ class BoardsController extends Controller
 
         //非公開掲示板には署名付きURLが必須
         if( $board->hidden && !$request->hasValidSignature() ){
-            abort(403);
+            redirect(route('home.mypage'), 303)->with('status', 'エラーが発生しました。掲示板参加リンクを確認してください。');
         }
 
         if( $board->users()->pluck('id')->contains( Auth::id() ) ){

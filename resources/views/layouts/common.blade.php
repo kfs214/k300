@@ -19,14 +19,14 @@
         <a href="{{ route('team.index') }}"><li>チーム</li></a>
         <a href="{{ route('letters.inbox') }}"><li>受信箱</li></a>
       @endauth
-      <a href="{{ route('boards.index') }}"><li>公開掲示板</li></a>
+      <a href="{{ route('boards.index', ['openexternalbrowser' => 1]) }}"><li>公開掲示板</li></a>
       <a href="{{ route('simple.form') }}"><li>簡易診断</li></a>
       @auth
         <a href="{{ route('home.settings') }}"><li>設定</li></a>
         <a href="{{ route('logout') }}"><li>ログアウト</li></a>
       @else
-        <a href="{{ route('login') }}"><li>ログイン</li></a>
-        <a href="{{ route('register') }}"><li>新規登録</li></a>
+        <a href="{{ route('login', ['openexternalbrowser' => 1]) }}"><li>ログイン</li></a>
+        <a href="{{ route('register', ['openexternalbrowser' => 1]) }}"><li>新規登録</li></a>
       @endauth
     </ul>
   </div>

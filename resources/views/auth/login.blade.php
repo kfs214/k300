@@ -4,6 +4,10 @@
 @section('content')
   <h2>{{ __('Login') }}</h2>
 
+  <div class="row">
+    <a href="{{route('register')}}">新規登録はこちらから</a>
+  </div>
+
   <form method="POST" action="{{ route('login') }}">
     @csrf
 
