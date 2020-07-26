@@ -1,6 +1,6 @@
 <?php
 function getPattern(){
-  return '{' . preg_quote(config('app.url')) . '[-\w./?%&=]*}';
+  return '{' . preg_quote(config('app.url')) . '[-\w./?%&=;]*}';
 }
 
 
@@ -10,7 +10,7 @@ function innerLink($content){
   $inner_link =  preg_replace_callback(
     $pattern,
     function($matches){
-      return '<a href="' . $matches[0] . '">' . $matches[0] . "</a>";
+      return '<a href="' . $matches[0] . '">' . $matches[0] . '</a>';
     },
     $content
   );
@@ -20,7 +20,7 @@ function innerLink($content){
 
 function str_limit_plus($str, $limit = 100, $end = '...'){
   $pattern = getPattern();
-  
+
   if( mb_strlen($str) <= $limit){
     return innerLink($str);
   }else{

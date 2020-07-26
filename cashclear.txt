@@ -1,0 +1,4 @@
+php74cli artisan cache:clear
+php74cli artisan config:clear
+php74cli artisan route:clear
+php74cli artisan view:clear

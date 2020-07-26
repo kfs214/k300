@@ -3,7 +3,13 @@
 * php artisan salt:generate  
 hashidsを使うためのsaltが.envファイルに書き込まれます。
 
+* coreserverで使う場合のコマンド例
+php74cli -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php74cli -r "if (hash_file('sha384', 'composer-setup.php') === 'e5325b19b381bfd88ce90a5ddb7823406b2a38cff6bb704b0acc289a09c8128d4a8ce2bbafcd1fcbdc38666422fe2806') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+php74cli composer-setup.php
+php74cli -r "unlink('composer-setup.php');"
 
+php74cli -d extension=php-7.4.1/modules/xmlwriter.so composer.phar install
 
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
