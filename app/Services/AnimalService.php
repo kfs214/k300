@@ -77,7 +77,7 @@ class AnimalService{
 /*    if( url()->current() != url()->previous() ){
         session()->forget('filters');
     }*/
-    
+
     //絞り込み準備
     $previous = preg_replace('/\?.*/', '', url()->previous());
 
@@ -87,7 +87,7 @@ class AnimalService{
       if( $search_by == 'none' ){
           session()->forget('filters');
 
-      }elseif( $search_by == 'acode' ){
+      }elseif( $search_by == 'acode' && $request->acode){
           $filters[] = ['acode', $request->acode,];
           if($mode != 'team'){
             $filters[] = ['type_shown', 7];
@@ -123,7 +123,7 @@ class AnimalService{
           }
 
           $selected_animals['t12aname'] = $request->t12aname;
-          
+
         }
 
       }elseif( session('filters') ){
@@ -133,8 +133,8 @@ class AnimalService{
 
       session()->flash('selected_animals', $selected_animals);
       session()->flash('filters', $filters);
-      
-      
+
+
       //並べ替え有効時、非公開設定のユーザーは表示しない。
       if( $request->sort && $mode != 'team'){
         switch( $request->sort ){

@@ -11,6 +11,8 @@ php74cli -r "unlink('composer-setup.php');"
 
 php74cli -d extension=php-7.4.1/modules/xmlwriter.so composer.phar install
 
+ = = = = = 
+
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
