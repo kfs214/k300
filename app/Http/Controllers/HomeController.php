@@ -17,7 +17,18 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('verified');
+        $this->middleware('verified')->except('discard');
+    }
+
+    public function discard(){
+        if(Auth::user()->hasVerifiedEmail()){
+          return redirect(route('home.mypage'), 303)->with('status', '無効な操作です。');
+        }
+
+        Auth::user()->delete();
+        session()->flush();
+
+        return redirect(route('register'), 303)->with('status', '操作が完了しました。');
     }
 
     /**

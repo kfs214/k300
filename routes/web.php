@@ -16,7 +16,11 @@ Route::get('', function () {
 })->name('welcome');
 
 Auth::routes(['verify' => true]);
-Route::get('logout', 'HomeController@logout')->name('logout');
+
+Route::middleware('auth')->group(function(){
+  Route::get('logout', 'HomeController@logout')->name('logout');
+  Route::get('discard', 'HomeController@discard')->name('discard');
+});
 
 Route::prefix('home')->middleware('verified')->as('home.')->group(function(){
   Route::get('', 'HomeController@index')->name('mypage');
