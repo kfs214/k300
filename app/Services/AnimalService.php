@@ -5,6 +5,7 @@ use App\Animal;
 use App\User;
 use Carbon\Carbon;
 use Config;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AnimalService{
@@ -63,6 +64,22 @@ class AnimalService{
     }else{
         return '<a href="https://www.google.co.jp/search?q=動物占い+' . $query . '" target="_blank" title="この結果をGoogleで検索する">' . $query . '</a>';
     }
+  }
+
+
+  public function getQuery(){
+      $url = url()->full();
+
+      preg_match('/sort=[^&]*/', $url, $matches);
+      $sort = str_replace('sort=', '', $matches[0] ?? '');
+      unset($matches);
+
+
+      preg_match('/direction=[^&]*/', $url, $matches);
+      $direction = str_replace('direction=', '', $matches[0] ?? '');
+      unset($matches);
+
+      return compact('sort', 'direction');
   }
 
 
@@ -162,9 +179,21 @@ class AnimalService{
 
 
   public function sortLinkGen($shown, $sort){
-    return $shown . '
+    $query = $this->getQuery();
+
+    if($query['sort'] == $sort){
+      if($query['direction'] == 'asc'){
+        return $shown . '▲
+          <a href="' . url()->current() . '?sort=' . $sort . '&direction=desc">▼</a>';
+      }else{
+        return $shown . '
+          <a href="' . url()->current() . '?sort=' . $sort . '&direction=asc">▲</a>▼';
+      }
+    }else{
+      return $shown . '
       <a href="' . url()->current() . '?sort=' . $sort . '&direction=asc">▲</a>
       <a href="' . url()->current() . '?sort=' . $sort . '&direction=desc">▼</a>';
+    }
   }
 }
 
