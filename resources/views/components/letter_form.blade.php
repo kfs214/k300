@@ -11,4 +11,11 @@
   ※現在{{mb_strlen(old('content'))}}文字</span>
 @enderror
 
-<p>診断結果をGoogleで検索する：{!! $shown_aname == Config::get('view.hidden_aname') ? Config::get('view.hidden') : $services->getLink($shown_aname) !!}</p>
+@if($comment)
+  <h3>プロフィールのコメント</h3>
+  <p>{{$comment}}</p>
+@endif
+@if($shown_aname != Config::get('view.hidden_aname'))
+  <h3>診断結果</h3>
+  <p>Googleで検索する：{!! $services->getLink($shown_aname) !!}</p>
+@endif
