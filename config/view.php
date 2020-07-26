@@ -36,5 +36,6 @@ return [
     'hidden' => '非公開',
     'hidden_uname' => '匿名のユーザー',
     'hidden_aname' => '動物：非公開',
+    'deleted' => '退会したユーザー',
 
 ];

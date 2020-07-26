@@ -7,7 +7,8 @@
   <button type="button" onClick="location.href='{{ url()->previous() }}'">下書きを破棄して戻る</button>
 </form>
 @error('content')
-  <span class="invalid-feedback">{{$message}}</span>
+  <span class="invalid-feedback">{{$message}}<br>
+  ※現在{{mb_strlen(old('content'))}}文字</span>
 @enderror
 
 <p>診断結果をGoogleで検索する：{!! $shown_aname == Config::get('view.hidden_aname') ? Config::get('view.hidden') : $services->getLink($shown_aname) !!}</p>

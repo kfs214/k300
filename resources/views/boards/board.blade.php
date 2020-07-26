@@ -51,7 +51,10 @@
       <button type="submit">書き込む</button>
     </form>
     @error('content')
-      {{$message}}
+      <span class="invalid-feedback">
+        {{$message}}<br>
+        ※現在{{mb_strlen(old('content'))}}文字
+      </span>
     @enderror
   @endif
 @endsection

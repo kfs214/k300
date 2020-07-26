@@ -17,7 +17,8 @@
       <input id="uname" type="text" name="uname" value="{{ old('uname') }}" required autocomplete="name" {{ $errors->any() ? $errors->has('uname') ? 'autofocus' : '' : 'autofocus' }}>
       @error('uname')
           <br><span class="invalid-feedback">
-              {{ $message }}
+              {{ $message }}<br>
+              ※現在{{mb_strlen(old('uname'))}}文字
           </span>
       @enderror
     </div>
@@ -40,7 +41,8 @@
 
       @error('comment')
           <br><span class="invalid-feedback" role="alert">
-              <strong>{{ $message }}</strong>
+              <strong>{{ $message }}
+              ※現在{{mb_strlen(old('comment'))}}文字</strong>
           </span>
       @enderror
     </div>

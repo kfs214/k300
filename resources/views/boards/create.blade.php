@@ -11,7 +11,8 @@
         <td>
           <input name="board_name" type="text" placeholder="カウカウ・リゾートの人たち" value="{{ old('board_name', session('board_name')) }}" {{ $errors->has('board_name') ? 'autofocus' : '' }}>
           @error ('board_name')
-              <br><span class="invalid-feedback">{{ $message }}</span>
+              <br><span class="invalid-feedback">{{ $message }}<br>
+              ※現在{{mb_strlen(old('board_name'))}}文字</span>
           @enderror
         </td>
       </tr>
@@ -20,7 +21,8 @@
         <td>
           <input name="shown_id" type="text" placeholder="cowcow214" value="{{ old('shown_id', session('shown_id')) }}" {{ $errors->has('shown_id') ? 'autofocus' : '' }}>
           @error ('shown_id')
-              <br><span class="invalid-feedback">{{ $message }}</span>
+              <br><span class="invalid-feedback">{{ $message }}<br>
+              ※現在{{mb_strlen(old('shown_id'))}}文字</span>
           @enderror
         </td>
       </tr>
