@@ -34,7 +34,7 @@
       @foreach( $posts as $post)
         <tr>
           <td>{!! $user_type == 'joined' ? $post->user->letter_link : $post->user->shown_uname !!}</td>
-          <td>{!! nl2br(e($post->content)) !!}</td>
+          <td>{!! nl2br(innerLink(e($post->content))) !!}</td>
           <td>{{ $post->created_at }}</td>
         </tr>
       @endforeach

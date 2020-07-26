@@ -37,7 +37,7 @@ class HomeController extends Controller
             $board->latest_post = $latest_post;
         }
 
-        $title = 'マイページ';
+        $title = 'ホーム';
 
         session( ['redirect_to' => route( 'home.mypage' )] );
 
