@@ -141,9 +141,9 @@ class BoardsController extends Controller
     public function showConfirmMessage($shown_id, Request $request){
           $board = Board::select('shown_id', 'name')->where(compact('shown_id'))->first();
 
-          $request->session()->reflash();
+          $content = session('content');
 
-          return view('boards.confirm_message', compact('board'));
+          return view('boards.confirm_message', compact('board', 'content'));
     }
 
 
@@ -209,12 +209,12 @@ class BoardsController extends Controller
     }
 
 
-    public function storeMessage($shown_id, Post $post){
+    public function storeMessage($shown_id, Post $post, Request $request){
         //保存
         $board = Board::where(compact('shown_id'))->first();
 
         $data = [
-          'content' => session('content'),
+          'content' => $request->content,
           'board_id' => $board->id,
           'user_id' => Auth::id(),
         ];
