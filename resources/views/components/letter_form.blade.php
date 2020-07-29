@@ -1,8 +1,9 @@
 @inject('services', 'App\Services\AnimalService')
 
-<form method="post" action="{{ route('letters.form', ['to_user_id' => session('to_user_id')]) }}">
+<form method="post" action="{{ route('letters.form', ['to_user_id' => $to_user_id]) }}">
   @csrf
-  <textarea name="content" {{ $errors->has('content') ? 'autofocus' : '' }}>{{ old('content') ?? session('content') ?? ''}}</textarea><br>
+  <input type="hidden" name="profile" value="{{$profile}}">
+  <textarea name="content" {{ $errors->has('content') ? 'autofocus' : '' }}>{{ old('content', session('content'))}}</textarea><br>
   <button type="submit">内容を確認する</button>
   <button type="button" onClick="location.href='{{ url()->previous() }}'">下書きを破棄して戻る</button>
 </form>

@@ -14,9 +14,13 @@ use Vinkla\Hashids\Facades\Hashids;
 class LettersController extends Controller
 {
     public function confirm(Request $request){
-        $request->session()->reflash();
+      $data = session('data');
 
-        return view('letters.confirm');
+      $content = $data['content'];
+      $to_user_id = $data['to_user_id'];
+      $profile = $data['profile'];
+
+      return view('letters.confirm', compact('content', 'to_user_id', 'profile'));
     }
 
     public function inbox(Request $request){
@@ -106,7 +110,7 @@ class LettersController extends Controller
 
 
     public function showForm($to_user_id){
-        $to_user = User::find(Hashids::decode($to_user_id)[0] ?? null);
+        $to_user = User::find(Hashids::decode($to_user_id)[0]);
 
         $profile = $to_user->profile;
 
@@ -114,10 +118,7 @@ class LettersController extends Controller
 
         $shown_aname = $to_user->shown_aname;
 
-        \Session::flash('to_user_id', $to_user_id);
-        \Session::flash('profile', $profile);
-
-        return view('letters.form', compact('shown_aname', 'comment'));
+        return view('letters.form', compact('shown_aname', 'comment', 'to_user_id', 'profile'));
     }
 
 
@@ -145,17 +146,14 @@ class LettersController extends Controller
       }
 
 
-      \Session::flash('to_user_id', $to_user_id);
-      \Session::flash('profile', $profile);
-
-      return view('letters.letter', compact('letter', 'shown_aname', 'mode', 'comment'));
+      return view('letters.letter', compact('letter', 'shown_aname', 'mode', 'comment', 'to_user_id', 'profile'));
     }
 
 
     public function storeLetter(Letter $letter, Request $request){
         $data = [
-          'content' => session('content'),
-          'to_user_id' => Hashids::decode(session('to_user_id'))[0] ?? null,
+          'content' => $request->content,
+          'to_user_id' => Hashids::decode($request->to_user_id)[0],
           'from_user_id' => Auth::id(),
         ];
 
@@ -168,13 +166,14 @@ class LettersController extends Controller
         return redirect(route('letters.sent'))->with('status', '送信しました。');
     }
 
-    public function validateLetter(Request $request){
+    public function validateLetter(Request $request, $to_user_id){
         $data = $request->validate([
-          'content' => 'required|max:500'
+          'content' => 'required|max:500',
+          'profile' => 'nullable'
         ]);
 
-        $request->session()->reflash();
+        $data += compact('to_user_id');
 
-        return redirect( route('letters.confirm') )->with( 'content', $data['content'] );
+        return redirect( route('letters.confirm') )->with( compact('data') );
     }
 }
