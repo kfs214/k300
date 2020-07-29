@@ -129,6 +129,8 @@ class LettersController extends Controller
 
           $shown_aname = $letter->to_user->shown_aname;
 
+          $comment = '';
+
           $to_user_id = Hashids::encode($letter->to_user->id);
       }else{
           $mode = 'inbox';

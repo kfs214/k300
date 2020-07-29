@@ -5,7 +5,7 @@
   <h2>{{ $board->name }}</h2>
   @if( $user_type == 'joined' )
     @if( $board->hidden )
-      招待用リンク：<input type="text" value="{{ $join_url }}"><br>
+      招待用リンク：<input type="text" value="{{ $join_url }}" onfocus="this.select();"><br>
     @endif
     <button onClick="location.href='{{ route('boards.board.leave', ['shown_id' => $board->shown_id]) }}'">退出する</button>
   @elseif( $user_type != 'guest')

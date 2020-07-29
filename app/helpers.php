@@ -1,6 +1,6 @@
 <?php
-function getPattern(){
-  return '{' . preg_quote(config('app.url')) . '[-\w./?%&=;]*}';
+function getPattern($option = ''){
+  return '{' . $option .  preg_quote(config('app.url')) . '[-\w./?%&=;]*}';
 }
 
 
@@ -26,4 +26,20 @@ function str_limit_plus($str, $limit = 100, $end = '...'){
   }else{
     return rtrim(mb_substr($str, 0, $limit)) . $end;
   }
+}
+
+function str_limit_mail($str, $limit = 100, $end = '...'){
+  $pattern = getPattern('^');
+
+  if( mb_strlen($str) >= $limit ){
+    if(!preg_match($pattern, $str, $matches)){
+      $str = str_ireplace('http', 'h ttp', rtrim(mb_substr($str, 0, $limit)));
+    }elseif(mb_strlen($matches[0]) < mb_strlen($str)){
+      $str = $matches[0];
+    }
+
+    $str .= $end;
+  }
+
+  return $str;
 }
