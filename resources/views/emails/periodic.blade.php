@@ -15,7 +15,7 @@
 ほか{{ $loop->remaining + 1 }}件
 @break
 @endif
-{{ Str::limit($post->content, 40, '...') }}  
+{{ str_limit_mail($post->content, 40, '...') }}
 @endforeach
 [{{ $posts_onthe_board->first()->name }}を表示する]({{ route('boards.board.index', ['shown_id' => $shown_id ])}})
 
@@ -26,24 +26,24 @@
 @endif
 @if( $letters->first() )
 # 新着メッセージ
-{{$letters_from_count}}人からの新着メッセージが届いています  
+{{$letters_from_count}}人からの新着メッセージが届いています
 
 * * * * *
 @foreach( $letters as $letter )
 @if($loop->iteration > 5)
-ほか{{ $loop->remaining + 1 }}件の新着メッセージがあります  
+ほか{{ $loop->remaining + 1 }}件の新着メッセージがあります
 @break
 @endif
-{{ Str::limit($letter->content, 100, ' [...続きを表示する](' . route('letters.letter', $letter) . ')') }}  
+{{ str_limit_mail($letter->content, 100, ' [...続きを表示する](' . route('letters.letter', $letter) . ')') }}  
 [{{ $letter->from_user->profile }}]({!! $letter->from_user->letter_url !!})から
 　　
 * * * * *
 @endforeach
-[受信ボックスを表示する]({{ route('letters.inbox') }})  
+[受信ボックスを表示する]({{ route('letters.inbox') }})
 
 * * * * *
 * * * * *
-  
+
 @endif
 [通知設定を変更する]({{ route('home.settings') }})
 @endcomponent

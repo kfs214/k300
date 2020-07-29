@@ -230,7 +230,7 @@ class BoardsController extends Controller
 
         $to_emails = $board->users()->where($filters)->get();
 
-        $post_index = Str::limit($data['content'], 40, '...');
+        $post_index = str_limit_mail($data['content'], 40, '...');
 
         foreach( $to_emails as $to ){
           Mail::to($to)->send(new SendNotificationMail($board, $post_index, ''));
