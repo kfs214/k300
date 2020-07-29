@@ -17,6 +17,15 @@ class SimpleController extends Controller
       $data = $request->validate([
         'birthday' => 'required|date_format:"Y-m-d"',
       ]);
+
+      if(!session('bday_year')){
+        session([
+          'bday_year' => $request->bday_year,
+          'bday_month' => $request->bday_month,
+          'bday_day' => $request->bday_day,
+        ]);
+      }
+
       $acode = AnimalService::acode($request->birthday);
       $animal = Animal::find($acode);
       $birthday = $request->birthday;

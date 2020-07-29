@@ -25,9 +25,9 @@
 
     <div class="row">
       <h3><label for="birthday">生年月日</label></h3>
-      <input id="bday_year" type="number" name="bday_year" value="{{ old('bday_year') }}" required autocomplete="bday" placeholder="1980" {{ $errors->has('birthday') ? 'autofocus' : ''}}>年
-      <input id="bday_month" type="number" name="bday_month" value="{{ old('bday_month') }}" required autocomplete="bday" placeholder="2">月
-      <input id="bday_day" type="number" name="bday_day" value="{{ old('bday_day') }}" required autocomplete="bday" placeholder="14">日
+      <input id="bday_year" type="number" name="bday_year" value="{{ old('bday_year', session('bday_year')) }}" required autocomplete="bday" placeholder="1980" {{ $errors->has('birthday') ? 'autofocus' : ''}}>年
+      <input id="bday_month" type="number" name="bday_month" value="{{ old('bday_month', session('bday_month')) }}" required autocomplete="bday" placeholder="2">月
+      <input id="bday_day" type="number" name="bday_day" value="{{ old('bday_day', session('bday_day')) }}" required autocomplete="bday" placeholder="14">日
       @error('birthday')
           <br><span class="invalid-feedback">
               {{ $message }}
