@@ -84,11 +84,12 @@ class HomeController extends Controller
 
 
     public function updateGeneralSettings(Request $request){
-        $notify_setting_options = 'in:"disabled", "push", "everyday", "everyweek"';
+        $notify_setting_options = 'nullable|in:"disabled", "push", "everyday", "everyweek"';
         $data = $request->validate([
           'notify_posts' => $notify_setting_options,
           'notify_users' => $notify_setting_options,
           'notify_messages' => $notify_setting_options,
+          'comment' => ['nullable', 'string', 'max:255'],
         ]);
 
         $user = Auth::user();

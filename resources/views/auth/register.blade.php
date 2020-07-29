@@ -37,7 +37,7 @@
 
     <div class="row">
       <h3><label for="comment">コメント<br>（省略可）</label></h3>
-      <textarea id="comment" class="row-5 form-control @error('comment') is-invalid @enderror" name="comment" placeholder="ふんどし王子です。余市第1リフトで仕事してます。プログラマーやったり自衛官やったり家事代行やったりしてきました。南樽市場安くて幸せ。" {{ $errors->has('comment') ? 'autofocus' : ''}}>{{ old('comment') }}</textarea>
+      <textarea id="comment" name="comment" placeholder="ふんどし王子です。余市第1リフトで仕事してます。プログラマーやったり自衛官やったり家事代行やったりしてきました。南樽市場安くて幸せ。" {{ $errors->has('comment') ? 'autofocus' : ''}}>{{ old('comment') }}</textarea>
 
       @error('comment')
           <br><span class="invalid-feedback" role="alert">

@@ -2,10 +2,10 @@
 @section('title', '通知設定')
 
 @section('content')
-  <h2>通知設定</h2>
   <form method="POST">
     @csrf
-    <div class="scroll-table"><table>
+    <div class="scroll-table row"><table>
+      <h2>通知設定</h2>
       <tr>
         <th>参加中の掲示板への新しい書き込み</th>
         <td><select name="notify_posts">
@@ -32,7 +32,17 @@
       </tr>
     </table></div>
 
-    <div class="row"></div>
-    <button type="submit">通知設定を更新する</button>
+    <div class="row">
+      <h2>コメントを更新</h2>
+      <textarea name="comment" placeholder="ふんどし王子です。余市第1リフトで仕事してます。プログラマーやったり自衛官やったり家事代行やったりしてきました。南樽市場安くて幸せ。" {{ $errors->has('comment') ? 'autofocus' : ''}}>{{ old('comment', $user->comment) }}</textarea>
+      @error('comment')
+          <br><span class="invalid-feedback">
+              <strong>{{ $message }}
+              ※現在{{mb_strlen(old('comment'))}}文字</strong>
+          </span>
+      @enderror
+    </div>
+
+    <button type="submit">設定を更新する</button>
   </form>
 @endsection
