@@ -24,7 +24,7 @@ input, select{
     border-radius: 5px;
 }
 
-textarea, button, input, select{
+textarea, button, input, select, p, td{
     font-size: 1em;
 }
 
