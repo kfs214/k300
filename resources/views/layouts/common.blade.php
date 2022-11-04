@@ -64,11 +64,11 @@
         @endif
 
         <div class="alert alert-info" role="alert">
-            <h4 class="alert-heading">Well done!</h4>
-            <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit
-                longer so that you can see how spacing within an alert works with this kind of content.</p>
-            <hr>
-            <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+            <h4 class="alert-heading">サービス終了のお知らせ</h4>
+            <p>誠に勝手ながら、2022年末でのサービス終了を決定いたしました<br />
+                2023年以降はページへのアクセスを含めた全てのサービス利用ができなくなります</p>
+            <p>これまでのご愛用、応援まことにありがとうございました<br />
+                今後とも<a href="https://github.com/kfs214/" target="_blank">kfs214</a>をどうぞよろしくお願いいたします</p>
         </div>
 
         @yield('content')
